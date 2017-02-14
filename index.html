@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>color-wander</title>
+    <link href='https://fonts.googleapis.com/css?family=Oxygen:300,700' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+        canvas {
+            /*            cursor: pointer;*/
+        }
+        
+        body {
+            font-family: 'Oxygen', sans-serif;
+        }
+        
+        .seed-container,
+        .user-input-container {
+            cursor: auto;
+            /*            position: absolute;*/
+            left: 10px;
+            top: 80px;
+            color: white;
+            font-weight: 200;
+            text-transform: uppercase;
+            font-size: 12.25px;
+            font-family: 'Oxygen', sans-serif;
+        }
+        
+        .seed-container {
+            display: none;
+        }
+        
+        .noselect {
+            -webkit-touch-callout: none;
+            /* iOS Safari */
+            -webkit-user-select: none;
+            /* Chrome/Safari/Opera */
+            -khtml-user-select: none;
+            /* Konqueror */
+            -moz-user-select: none;
+            /* Firefox */
+            -ms-user-select: none;
+            /* Internet Explorer/Edge */
+            user-select: none;
+            /* Non-prefixed version, currently
+                                    not supported by any browser */
+        }
+        
+        .seed-text {
+            font-weight: 700;
+        }
+        
+        .howto {
+            font-size: 9px;
+        }
+        
+        #fill {
+            cursor: default;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        
+        .input_info {
+            margin-bottom: 50px;
+            display: block;
+        }
+        
+        .user-input-container {
+            display: block;
+            float: left;
+            text-align: center;
+            margin: 20px;
+            max-width: 20%;
+            overflow: auto;
+        }
+        
+        .input-form {
+            display: block;
+            margin: 20px;
+            float: left;
+            font-weight: 200;
+            text-transform: uppercase;
+            font-size: 12.25px;
+            font-family: 'Oxygen', sans-serif;
+        }
+    </style>
+    <!-- Start Web Storage -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        // Check if the localStorage object exists
+        //        if (localStorage) {
+        //            $(document).ready(function () {
+        //                localStorage.setItem("user_name", "");
+        //                localStorage.setItem("user_color", "");
+        //            })
+        //        };
+        //                $(".save").click(function () {
+        //                    // Get input name
+        //                    var name = $("#name").val();
+        //                    var color = $("#color").val();
+        //                    localStorage.setItem("user_name", name);
+        //                    localStorage.setItem("user_color", color);
+        //                    getInput();
+        //                });
+        //            });
+        //        }
+        //        else {
+        //            alert("Sorry, your browser do not support local storage.");
+        //        }
+        //
+        //        function getInput() {
+        //            document.getElementById("name-text").innerHTML = localStorage.getItem("user_name");
+        //            document.getElementById("color-text").innerHTML = localStorage.getItem("user_color");
+        //        }
+    </script>
+    <!-- End Web Storage -->
+</head>
+
+<body>
+    <header class="user-input-container">
+        <form class="input-form">
+            <h3> Name: </h3>
+            <input type="text" id="name" autofocus>
+            <br/>
+            <h3> Color: </h3>
+            <input type="text" id="color">
+            <br/>
+            <br/>
+            <input type="button" class="save" value="Save"> </form>
+    </header>
+    <header class="user-results-container">
+        <h1><span id="name-text"></span> // <span id="color-text"></span></h1> </header>
+    <div id="fill"></div>
+    <canvas id="canvas" class="noselect"></canvas>
+    <header class="seed-container">
+        <div>seed – <span class="seed-text">12380</span></div>
+        <!--        <div class="howto">tap to randomize</div>-->
+    </header>
+    <script src="bundle.js"></script>
+</body>
+
+</html>
