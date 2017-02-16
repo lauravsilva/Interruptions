@@ -69,7 +69,7 @@ function reload(config) {
         saveBtn.addEventListener("click", function () {
             if (localStorage) {
                 var name = $("#name").val();
-                var color = $("#color").val();
+                var color = $("#color option:selected").val();
                 localStorage.setItem("user_name", name);
                 localStorage.setItem("user_color", color);
                 getInput();
@@ -87,11 +87,18 @@ function reload(config) {
                             loop.stop();
                         }
                     });
+                    
+                    context.font = "200px Oxygen";
+                    context.fillStyle = colorText.innerHTML;
+                    context.textAlign = "center";
+                    context.fillText(userText.innerHTML, canvas.width/2, canvas.height/2);
+                    
                     loop.start();
-                    console.log("start");
+                    
                     userInputContainer.style.display = "none";
                     fillCanvas.style.display = "block";
-                    userResultsContainer.style.display = "block;"
+                    userResultsContainer.style.display = "none";
+                                        
                 }
             }
             else {
@@ -99,6 +106,7 @@ function reload(config) {
             }
         });
     };
+    
     background.src = config.backgroundSrc;
 }
 
@@ -136,7 +144,7 @@ function letterbox(element, parent) {
         height += 1;
     }
     // TEMPORARYYYYYY
-    height -= 100;
+//    height -= 100;
     //    width -= 100;
     element.style.top = y + 'px';
     element.style.width = width + 'px';

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, shrink-to-fit=0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-    <title>color-wander</title>
+    <title>Interruptions</title>
     <link href='https://fonts.googleapis.com/css?family=Oxygen:300,700' rel='stylesheet' type='text/css'>
     <style type="text/css">
         canvas {
@@ -72,15 +72,16 @@
         }
         
         .user-input-container {
-            display: block;
+            display: inline-block;
             float: left;
             text-align: center;
-            margin: 20px;
-            max-width: 20%;
+            margin: 20px auto;
+            width: 100%;
             overflow: auto;
         }
         
         .input-form {
+            width: 100%;
             display: block;
             margin: 20px;
             float: left;
@@ -89,58 +90,92 @@
             font-size: 12.25px;
             font-family: 'Oxygen', sans-serif;
         }
+        
+        .button {
+            font-size: 14px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 20px 40px;
+            display: inline-block;
+            margin: 15px 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            outline: none;
+            position: relative;
+            -webkit-transition: all 0.3s;
+            -moz-transition: all 0.3s;
+            transition: all 0.3s;
+            background: #9a9a9a;
+            color: #fff;
+            box-shadow: 0 6px #464045;
+            -webkit-transition: none;
+            -moz-transition: none;
+            transition: none;
+            border-radius: 10px;
+        }
+        
+        .button:hover {
+            box-shadow: 0 4px #464045;
+            top: 2px;
+        }
+        
+        .button:active {
+            box-shadow: 0 0 #464045;
+            top: 6px;
+        }
+        
+        input.button {
+            width: 165px;
+        }
+        
+        input {
+            width: 245px;
+            padding: 10px 40px;
+            display: inline-block;
+            margin: 15px 20px;
+            font-size: 50px;
+            text-align: center;
+        }
+        
+        select {
+            width: 329px;
+            display: inline-block;
+            margin: 15px 20px;
+            font-size: 30px;
+        }
     </style>
-    <!-- Start Web Storage -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        // Check if the localStorage object exists
-        //        if (localStorage) {
-        //            $(document).ready(function () {
-        //                localStorage.setItem("user_name", "");
-        //                localStorage.setItem("user_color", "");
-        //            })
-        //        };
-        //                $(".save").click(function () {
-        //                    // Get input name
-        //                    var name = $("#name").val();
-        //                    var color = $("#color").val();
-        //                    localStorage.setItem("user_name", name);
-        //                    localStorage.setItem("user_color", color);
-        //                    getInput();
-        //                });
-        //            });
-        //        }
-        //        else {
-        //            alert("Sorry, your browser do not support local storage.");
-        //        }
-        //
-        //        function getInput() {
-        //            document.getElementById("name-text").innerHTML = localStorage.getItem("user_name");
-        //            document.getElementById("color-text").innerHTML = localStorage.getItem("user_color");
-        //        }
-    </script>
-    <!-- End Web Storage -->
 </head>
 
 <body>
     <header class="user-input-container">
         <form class="input-form">
-            <h3> Name: </h3>
+            <h1> Name </h1>
             <input type="text" id="name" autofocus>
             <br/>
-            <h3> Color: </h3>
-            <input type="text" id="color">
+            <h1> Color </h1>
+            <!--            <input type="text" id="color">-->
+            <select id="color">
+                <option value="red">Red</option>
+                <option value="orange">Orange</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="indigo">Indigo</option>
+                <option value="violet">Violet</option>
+            </select>
             <br/>
             <br/>
-            <input type="button" class="save" value="Save"> </form>
+            <input type="button" class="save button" value="Save"> </form>
     </header>
     <header class="user-results-container">
-        <h1><span id="name-text"></span> // <span id="color-text"></span></h1> </header>
+        <h1><span id="name-text"></span> <span id="color-text"></span></h1> </header>
     <div id="fill"></div>
     <canvas id="canvas" class="noselect"></canvas>
     <header class="seed-container">
         <div>seed – <span class="seed-text">12380</span></div>
-        <!--        <div class="howto">tap to randomize</div>-->
+        <!--                <div class="howto">tap to randomize</div>-->
     </header>
     <script src="bundle.js"></script>
 </body>
