@@ -69,7 +69,7 @@ function reload(config) {
         saveBtn.addEventListener("click", function () {
             if (localStorage) {
                 var name = $("#name").val();
-                var color = $("#color option:selected").val();
+                var color = $("#color").val();
                 localStorage.setItem("user_name", name);
                 localStorage.setItem("user_color", color);
                 getInput();
@@ -88,17 +88,18 @@ function reload(config) {
                         }
                     });
                     
-                    context.font = "200px Oxygen";
+                    context.font = "100px Oxygen";
                     context.fillStyle = colorText.innerHTML;
                     context.textAlign = "center";
                     context.fillText(userText.innerHTML, canvas.width/2, canvas.height/2);
+                    
                     
                     loop.start();
                     
                     userInputContainer.style.display = "none";
                     fillCanvas.style.display = "block";
                     userResultsContainer.style.display = "none";
-                                        
+                                                            
                 }
             }
             else {
@@ -108,6 +109,7 @@ function reload(config) {
     };
     
     background.src = config.backgroundSrc;
+    document.getElementById("body").style.background = colorText.innerHTML + "!important";
 }
 
 function getInput() {
