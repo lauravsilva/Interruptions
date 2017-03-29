@@ -7,3 +7,5 @@ good/
 output/*.png
 output/*.jpg
 video/
+.sass-cache/
+

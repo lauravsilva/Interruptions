@@ -6,4 +6,4 @@ Andrea, Autumn, Caleb, Joe, Laura, Natasha, Todd, Zoë
 
 
 
-Original Project: https://github.com/mattdesl/color-wander
+Original Project in old_demo directory: https://github.com/mattdesl/color-wander
