@@ -8,4 +8,6 @@ output/*.png
 output/*.jpg
 video/
 .sass-cache/
-
+.npmignore
+.surgeignore
+.babelrc
