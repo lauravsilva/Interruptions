@@ -1,14 +1,17 @@
 <?php
 
 class DB {
-  private $connection;
+  private $db;
 
-  function __construct() {
-    require_once("../../../../db_conn.php");
-    $this->connection = new mysqli($host,$user,$pass,$db);
-    if ($this->connection->connect_error) {
-      //have an Error
-      echo "connect failed: ".mysqli_connect_error();
+  function __construct(){
+    require_once("../../../dbInfo.php");
+    try {
+      $this->dbh = new PDO("mysql:host=$host;dbname=$db;",$user,$pass);
+
+      //change error reporting
+      $this->dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    } catch(PDOException $e) {
+      echo $e->getMessage();
       die();
     }
   }
