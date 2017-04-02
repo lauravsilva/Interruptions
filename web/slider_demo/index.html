@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <script src="https://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+    <script src="jquery-ui.js"></script>
+    <script src="nouislider.min.js"></script>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            color: #2b2b2b;
+        }
+        
+        #dragcircle {
+            width: 50px;
+            height: 50px;
+            background-color: #2b2b2b;
+            border: 1px solid #2b2b2b;
+            z-index: 1000;
+            cursor: move;
+            border-radius: 25px;
+            left: 50%;
+        }
+        
+        #slider {
+            background: #cccccc;
+            height: 50px;
+            margin: 40px auto 10px;
+        }
+        
+        h2 {
+            text-align: center;
+        }
+        
+        .left {
+            text-align: left;
+            float: left;
+        }
+        
+        .right {
+            text-align: right;
+            float: right;
+        }
+        
+        #summary {
+            margin: 50px;
+            text-align: center;
+        }
+        
+        h5 {
+            height: 20px;
+        }
+        
+        #result {
+            color: #cccccc;
+        }
+        
+        #final_result {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h4>Interruptions</h4>
+        <h2>How do you feel when plans are canceled?</h2>
+        <div id="dragcircle"></div>
+        <div id="slider"></div>
+        <label class="left">Relieved</label>
+        <label class="right">Disappointed</label>
+        <div id="summary">
+            <h5>
+            <span id="result"></span>
+            </h5>
+            <h3><span id="final_result"></span></h3> </div>
+    </div>
+    <script type="text/javascript" src="main.js"></script>
+</body>
+
+</html>
