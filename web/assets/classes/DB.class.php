@@ -4,9 +4,9 @@ class DB {
   private $db;
 
   function __construct(){
-    require_once("../../../dbInfo.php");
+    require_once("../../../db_conn.php");
     try {
-      $this->dbh = new PDO("mysql:host=$host;dbname=$db;",$user,$pass);
+      $this->dbh = new PDO("mysql:host=$host;dbname=$name;",$user,$pass);
 
       //change error reporting
       $this->dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);

@@ -3,9 +3,13 @@
   require_once 'assets/classes/DB.class.php';
 
   $db = new DB();
+
+  $data = $db->getUserColors();
+  foreach($data as $row){
+    print_r($row);
 ?>
 
-<html>
+<!-- <html>
 <head>
     <title>Interruptions</title>
 
@@ -13,12 +17,7 @@
 
 <body>
   <h1>Welcome!</h1>
-  <?php
-    $data = $db->getUserColors();
-    foreach($data as $row){
-  		print_r($row);
-  	}
-   ?>
+
 
 </body>
-</html>
+</html> -->
