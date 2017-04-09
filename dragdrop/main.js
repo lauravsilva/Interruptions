@@ -18,13 +18,7 @@ sliderDiv.slider({
         $(this).find(".ui-slider-handle").hide();
     }
 });
-//noUiSlider.create(sliderDivObj, {
-//    start: [50],
-//    range: {
-//        'min': [0],
-//        'max': [100]
-//    }
-//});
+
 var position = sliderDiv.position()
     , sliderWidth = sliderDiv.width()
     , minX = position.left
@@ -32,7 +26,18 @@ var position = sliderDiv.position()
     , tickSize = sliderWidth / range;
 //the draggable object
 $("#dragcircle").draggable({
+    containment: "parent",
     drag: function (e, ui) {
+        
+//        $("body").css("background", "rgba(255, 255, 255, 1)");
+//        $("body").css("background", "-moz-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(224, 224, 224, 1) 50%, rgba(254, 254, 254, 1) 100%)");
+//        $("body").css("background", "-webkit-gradient(left top, right top, color-stop(0%, rgba(255, 255, 255, 1)), color-stop(50%, rgba(224, 224, 224, 1)), color-stop(100%, rgba(254, 254, 254, 1)))");
+//        $("body").css("background", "-webkit-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(224, 224, 224, 1) 50%, rgba(254, 254, 254, 1) 100%)");
+//        $("body").css("background", "-o-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(224, 224, 224, 1) 50%, rgba(254, 254, 254, 1) 100%)");
+//        $("body").css("background", "-ms-linear-gradient(left, rgba(255, 255, 255, 1) 0%, rgba(224, 224, 224, 1) 50%, rgba(254, 254, 254, 1) 100%)");
+//        $("body").css("background", "linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(224, 224, 224, 1) 50%, rgba(254, 254, 254, 1) 100%)");
+//        $("body").css("filter","progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#fefefe', GradientType=1)");
+        
         var offset = $(this).offset();
         var circleXPos = offset.left;
         var circleYPos = offset.top;
@@ -43,18 +48,23 @@ $("#dragcircle").draggable({
             sliderDiv.slider("value", val);
             if (val == 50) {
                 result = option3;
+                $("body").css("background", "blue");
             }
             else if (val > 50 && val < 75) {
                 result = option4;
+                $("body").css("background", "green");
             }
-            else if (val > 75) {
+            else if (val >= 75) {
                 result = option5;
+                $("body").css("background", "yellow");
             }
             else if (val < 50 && val > 25) {
+                $("body").css("background", "orange");
                 result = option2;
             }
             else {
                 result = option1;
+                $("body").css("background", "violet");
             }
             $("#result").text(result);
         }
@@ -64,6 +74,10 @@ $("#dragcircle").draggable({
 sliderDiv.droppable({
     //on drop 
     drop: function (e, ui) {
+        if ($(".drag_me").length){
+            $(".drag_me").css('visibility','hidden');
+        }
+        
         var finalMidPosition = $(ui.draggable).position().left + Math.round($("#dragcircle").width() / 2);
         //If within the slider's width, follow it along
         if (finalMidPosition >= minX && finalMidPosition <= maxX) {
@@ -75,7 +89,7 @@ sliderDiv.droppable({
             else if (val > 50 && val < 75) {
                 result = option4;
             }
-            else if (val > 75) {
+            else if (val >= 75) {
                 result = option5;
             }
             else if (val < 50 && val > 25) {
