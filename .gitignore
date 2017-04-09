@@ -11,3 +11,4 @@ video/
 .npmignore
 .surgeignore
 .babelrc
+db_conn.php
