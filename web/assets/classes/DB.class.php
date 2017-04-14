@@ -1,16 +1,19 @@
 <?php
 
+
 class DB {
   private $db;
 
   function __construct(){
     require("/mnt/websan/powerwww/home/interruptions/public_html/db_conn.php");
+      
     try {
       $this->dbh = new PDO("mysql:host=$host;dbname=$name;",$user,$pass);
 
       //change error reporting
       $this->dbh->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    } catch(PDOException $e) {
+    }
+      catch(PDOException $e) {
       echo $e->getMessage();
       die();
     }
@@ -40,13 +43,15 @@ class DB {
           $data[] = $row;
         }
         return $data;
-      } catch(PDOException $e) {
+      } 
+      catch(PDOException $e) {
         echo $e->getMessage();
         die();
       }
   }
     
 function getQuestion($questionID){
+    echo("Da host: " . $host); //Debug
     try{
       $data = array();
       $stmt = $this->dbh->prepare("SELECT * from questions WHERE questionID = " . $questionID);
@@ -55,7 +60,8 @@ function getQuestion($questionID){
           $data[] = $row;
         }
         return $data;
-      } catch(PDOException $e) {
+      } 
+      catch(PDOException $e) {
         echo $e->getMessage();
         die();
       }
@@ -70,13 +76,15 @@ function getAllQuestionOptions($questionID){
           $data[] = $row;
         }
         return $data;
-      } catch(PDOException $e) {
+      } 
+      catch(PDOException $e) {
         echo $e->getMessage();
         die();
       }
   }
     
-   function updateQuestionResponse($userID, $questionNum, $questionRes){
+  // TO DO
+  function updateQuestionResponse($userID, $questionNum, $questionRes){
      try{
        $data = array();
        $stmt = $this->dbh->prepare("UPDATE user SET qRes1 = 2 WHERE user.userID = 3");
@@ -92,7 +100,7 @@ function getAllQuestionOptions($questionID){
        die();
      }
    }
-    
+  
     
     function getPartnerData($partnerKey){
      try{
@@ -103,43 +111,48 @@ function getAllQuestionOptions($questionID){
          $data[] = $row;
        }
        return $data;
-     } catch(PDOException $e) {
+     } 
+      catch(PDOException $e) {
        echo $e->getMessage();
        die();
      }
    }    
 
+  function createUserWithSurveyData($userKey, $results){
+    try{
+       $stmt = $this->dbh->prepare("INSERT INTO user (userKey, qRes1, qRes2, qRes3, qRes4, qRes5) VALUES (:userKey, :val1, :val2, :val3, :val4, :val5)");
+       $stmt->execute(array(
+         'userKey'=>$userKey,
+         'val1'=>$results[0],
+         'val2'=>$results[1],
+         'val3'=>$results[2],
+         'val4'=>$results[3],
+         'val5'=>$results[4]
+       ));
+       return $this->dbh->lastInsertId();
+     } 
+    catch(PDOException $e) {
+       echo $e->getMessage();
+       die();
+     }
+    
+  }
+  
+    function addIsolationData($userKey, $userName, $color, $email){   
+     try{
+       $stmt = $this->dbh->prepare("UPDATE user SET userName = :userName, userColor = :color, userEmail = :userEmail WHERE userKey = :userKey");
+      $stmt->execute(array(
+          "userKey"=>$userKey,
+          "userName"=>$userName,
+          "color"=>$color,
+          "userEmail"=>$email
+      )); 
+      return $this->dbh->lastInsertId();
+     } 
+      catch(PDOException $e) {
+       echo $e->getMessage();
+       die();
+     }
+   }    
 }
-
-
-// Source: http://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string    	
-
-function crypto_rand_secure($min, $max)
-{
-    $range = $max - $min;
-    if ($range < 1) return $min; // not so random...
-    $log = ceil(log($range, 2));
-    $bytes = (int) ($log / 8) + 1; // length in bytes
-    $bits = (int) $log + 1; // length in bits
-    $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
-    do {
-        $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
-        $rnd = $rnd & $filter; // discard irrelevant bits
-    } while ($rnd > $range);
-    return $min + $rnd;
-}
-
-function getToken($length)
-{
-    $token = "";
-    $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-//    $codeAlphabet = "abcdefghijklmnopqrstuvwxyz";
-    $codeAlphabet.= "0123456789";
-    $max = strlen($codeAlphabet); // edited
-
-    for ($i=0; $i < $length; $i++) {
-        $token .= $codeAlphabet[crypto_rand_secure(0, $max-1)];
-    }
-
-    return $token;
-}
+?>
