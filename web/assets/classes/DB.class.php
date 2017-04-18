@@ -23,7 +23,7 @@ class DB {
   //   try{
   //     $data = array();
   //     $stmt = $this->dbh->prepare("mySQL query here...");
-  //     $stmt->execute(array('param'=>$param)); //can use id w/ or w/out colon (:id)
+  //     $stmt->execute(array('param'=>$param));
   //     while($row = $stmt->fetch()){
   //       $data[] = $row;
   //     }
@@ -34,11 +34,12 @@ class DB {
   //   }
   // }
 
-  function getUserColors(){
+  // Get all user data
+  function getAllUsersData(){
     try{
       $data = array();
       $stmt = $this->dbh->prepare("select * from user");
-      $stmt->execute(); //can use id w/ or w/out colon (:id)
+      $stmt->execute();
       while($row = $stmt->fetch()){
           $data[] = $row;
         }
@@ -50,12 +51,14 @@ class DB {
       }
   }
     
+// Get a question based on the questionID  
 function getQuestion($questionID){
-    echo("Da host: " . $host); //Debug
     try{
       $data = array();
-      $stmt = $this->dbh->prepare("SELECT * from questions WHERE questionID = " . $questionID);
-      $stmt->execute();
+      $stmt = $this->dbh->prepare("SELECT * from questions WHERE questionID = :qID");
+      $stmt->execute(array(
+        'qID' => $questionID
+      ));
       while($row = $stmt->fetch()){
           $data[] = $row;
         }
@@ -67,11 +70,13 @@ function getQuestion($questionID){
       }
     }
 
+  // Get all question options for specific questionID
 function getAllQuestionOptions($questionID){
     try{
       $data = array();
-      $stmt = $this->dbh->prepare("SELECT answers.answerText, questions.questionID FROM answers INNER JOIN questions ON answers.questionID = questions.questionID WHERE answers.questionID = " . $questionID);
-      $stmt->execute(); //can use id w/ or w/out colon (:id)
+      $stmt = $this->dbh->prepare("SELECT answers.answerText, questions.questionID FROM answers INNER JOIN questions ON answers.questionID = questions.questionID WHERE answers.questionID = :qID");
+      $stmt->execute(array(
+        'qID' => $questionID));
       while($row = $stmt->fetch()){
           $data[] = $row;
         }
@@ -83,14 +88,16 @@ function getAllQuestionOptions($questionID){
       }
   }
     
-  // TO DO
-  function updateQuestionResponse($userID, $questionNum, $questionRes){
+  // update one question response based on userKey and questionNum
+  function updateQuestionResponse($userKey, $questionNum, $questionRes){
      try{
        $data = array();
-       $stmt = $this->dbh->prepare("UPDATE user SET qRes1 = 2 WHERE user.userID = 3");
-//       $stmt = $this->dbh->prepare("UPDATE user SET " . $questionNum . " = " . $questionRes . " WHERE user.userID = " . $userKey);
-      $stmt->execute(); //can use id w/ or w/out colon (:id)
-//       $stmt->execute(array('param'=>$param)); //can use id w/ or w/out colon (:id)
+       $stmt = $this->dbh->prepare("UPDATE user SET :qNum = :qRes WHERE user.userKey = :userKey");
+       $stmt->execute(array(
+         'userKey'=>$userKey,
+         'qRes'=>$questionRes,
+         'qNum'=>$questionNum
+       ));
        while($row = $stmt->fetch()){
          $data[] = $row;
        }
@@ -101,12 +108,14 @@ function getAllQuestionOptions($questionID){
      }
    }
   
-    
+    // Get access to partner data from their partnerKey
     function getPartnerData($partnerKey){
      try{
        $data = array();
-       $stmt = $this->dbh->prepare("SELECT * from user WHERE userKey = '" . $partnerKey . "'");
-      $stmt->execute(); //can use id w/ or w/out colon (:id)
+       $stmt = $this->dbh->prepare("SELECT * from user WHERE userKey = :partnerKey");
+      $stmt->execute(array(
+        'partnerKey'=>$partnerKey
+      ));
        while($row = $stmt->fetch()){
          $data[] = $row;
        }
@@ -118,6 +127,7 @@ function getAllQuestionOptions($questionID){
      }
    }    
 
+  // Insert row into DB with userKey and all question results
   function createUserWithSurveyData($userKey, $results){
     try{
        $stmt = $this->dbh->prepare("INSERT INTO user (userKey, qRes1, qRes2, qRes3, qRes4, qRes5) VALUES (:userKey, :val1, :val2, :val3, :val4, :val5)");
@@ -138,7 +148,8 @@ function getAllQuestionOptions($questionID){
     
   }
   
-    function addIsolationData($userKey, $userName, $color, $email){   
+  // Update row with userKey to add name, color, email
+    function updateUserData($userKey, $userName, $color, $email){   
      try{
        $stmt = $this->dbh->prepare("UPDATE user SET userName = :userName, userColor = :color, userEmail = :userEmail WHERE userKey = :userKey");
       $stmt->execute(array(
@@ -154,5 +165,21 @@ function getAllQuestionOptions($questionID){
        die();
      }
    }    
+  
+  // Update partnerKey
+  function updatePartnerKey($userKey, $partnerKey){   
+     try{
+       $stmt = $this->dbh->prepare("UPDATE user SET partnerKey = :partnerKey WHERE userKey = :userKey");
+      $stmt->execute(array(
+          "userKey"=>$userKey,
+          "partnerKey"=>$partnerKey
+      )); 
+      return $this->dbh->lastInsertId();
+     } 
+      catch(PDOException $e) {
+       echo $e->getMessage();
+       die();
+     }
+   } 
 }
 ?>

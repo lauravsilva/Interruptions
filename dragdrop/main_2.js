@@ -14,7 +14,8 @@ sliderDiv.slider({
     orientation: "vertical"
     , min: 0
     , max: 100
-    , step: 1
+    , step: 25
+    , value: 50
     , create: function () {
         $(this).find(".ui-slider-handle").hide();
     }
@@ -28,6 +29,7 @@ var position = sliderDiv.position()
 $("#dragcontainer").draggable({
     containment: "parent"
     , drag: function (e, ui) {
+        console.log("drag");
         var offset = $(this).offset();
         var containerPosition = offset.top;
         val = Math.round((containerPosition - minX) / tickSize);
@@ -59,6 +61,7 @@ $("#dragcontainer").draggable({
 sliderDiv.droppable({
     //on drop 
     drop: function (e, ui) {
+        console.log("drop");
         var finalMidPosition = $(ui.draggable).position().top;
         val = Math.round((finalMidPosition - minX) / tickSize);
         sliderDiv.slider("value", val);

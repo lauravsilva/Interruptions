@@ -1,16 +1,94 @@
-$black: #000000;
-$blue: #093452;
-
+$main-font-family: "freight-sans-pro", sans-serif;
+// Logo
+$logo-color: #020b11;
+// Color scheme
+$font-color: #454545;
+$placeholder-color: #888888;
+$button-font-color: #020b11;
 body {
-    color: $blue;
+  font-family: $main-font-family;
 }
 
 html {
-  font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
+.container {
+  width: 800px;
+}
+
+h1 {
+  font-weight: bold;
+  font-size: 24pt;
+  color: $logo-color;
+  letter-spacing: 0.23em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 12pt;
+  color: $font-color;
+  opacity: 0.8;
+  letter-spacing: 0.05em;
+}
+
+p {
+  font-size: 8pt;
+  color: $placeholder-color;
+}
+
+button{
+  font-size: 8pt;
+  font-weight: 700;
+  color: $button-font-color;
+  letter-spacing: 0.23em;
+  text-transform: uppercase;
+  border: 1px solid $button-font-color;
+  border-radius: 1.2px;
+}
+
+.divider{
+  width: 22.5px;
+  height: 1px;
+  background: $button-font-color;
+  margin: 0 auto;
+}
+
+// I KNOW THIS IS UGLY BUT PLACEHOLDER STYLING WON'T WORK IF IT'S NOT REPEATED THIS WAY
+:-moz-placeholder { /* Firefox 18- */
+  font-style: italic;
+  font-size: 8pt;
+  color: $placeholder-color;
+  padding-left: 10px;
+}
+
+::-moz-placeholder { /* Firefox 19+ */
+  font-style: italic;
+  font-size: 8pt;
+  color: $placeholder-color;
+  padding-left: 10px;
+}
+
+:-ms-input-placeholder { /* IE 10+ */
+  font-style: italic;
+  font-size: 8pt;
+  color: $placeholder-color;
+  padding-left: 10px;
+}
+
+::-ms-input-placeholder { /* Edge */
+  font-style: italic;
+  font-size: 8pt;
+  color: $placeholder-color;
+  padding-left: 10px;
+}
+
+:placeholder-shown { /* Standard one last! */
+  font-style: italic;
+  font-size: 8pt;
+  color: $placeholder-color;
+  padding-left: 10px;
 }

@@ -1,15 +1,21 @@
-<?php
-  require "assets/inc/page_start.inc.php";
-?>
-
 <html>
 <head>
     <title>Interruptions</title>
 
+  <style>
+    body {
+      margin: 0 auto;
+      background: black;
+      text-align: center;
+    }
+    img {
+      height: 100%;
+      max-height: 780px;
+    }
+  </style>
 </head>
 
 <body>
-<h1>Interruptions</h1>
-    <h3>We are currently preparing for Imagine RIT. </h3>
+<img src="web/assets/images/logo.jpg" alt="Logo">
 </body>
 </html>
