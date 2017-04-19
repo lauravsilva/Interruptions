@@ -14,10 +14,6 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
-.container {
-  width: 800px;
-}
-
 h1 {
   font-weight: bold;
   font-size: 24pt;
@@ -32,6 +28,13 @@ h2 {
   font-size: 12pt;
   color: $font-color;
   opacity: 0.8;
+  letter-spacing: 0.05em;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 2em;
+  color: $font-color;
   letter-spacing: 0.05em;
 }
 

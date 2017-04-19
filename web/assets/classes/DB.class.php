@@ -8,9 +8,9 @@ class DB
     function __construct()
     {
         // Server path
-        //$path = "/mnt/websan/powerwww/home/interruptions/public_html/db_conn.php";
+        $path = "/mnt/websan/powerwww/home/interruptions/public_html/db_conn.php";
         // Local path
-        $path = "/Users/lauravsilva/Desktop/Interruptions/db_conn.php";
+//        $path = "/Users/lauravsilva/Desktop/Interruptions/db_conn.php";
 
         require "$path";
 

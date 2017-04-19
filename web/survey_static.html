@@ -5,7 +5,7 @@
     <!-- Basic Page Needs
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Interruptions</title>
+    <title>Interruptions | Survey</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Mobile Specific Metas
@@ -23,6 +23,11 @@
         catch (e) {
         }
     </script>
+    <!-- JavaScript
+        –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
     <!-- CSS
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="stylesheet" href="assets/css/normalize.css">
@@ -35,38 +40,41 @@
 </head>
 
 <body>
-<div class="container isolation">
-    <h1>Interruptions</h1>
-    <form class="form-createUser" role="form" action="#" method="post">
-        <h2>Please enter the user code you received after completing the survey:</h2>
-        <input type="text" name="key" id="key" placeholder="User Code">
-        <div class="divider"></div>
-        <h2>Please enter the following information:</h2>
+<div class="survey">
+
+    <div class="container">
+        <h3 class="question">When plans are cancelled you feel...</h3>
+    </div>
+
+    <div id="drag-container">
+        <div class="slider_label">
+            <p class="option1">Relieved</p>
+        </div>
+        <div id="slider">
+            <div id="drag-handle">
+                <h4><span id="final_result">Drag to answer</span></h4></div>
+        </div>
+        <div class="slider_label">
+            <p class="option2">Disappointed</p>
+        </div>
+    </div>
+
+    <footer class="container">
         <div class="row">
-            <div class="one-half column">
-                <input type="text" name="name" placeholder="First Name"></div>
-            <div class="one-half column">
-                <input type="number" name="age" placeholder="Age"></div>
+            <div class="one-third column prev">
+                <p><- Prev</p>
+            </div>
+            <div class="one-third column pagination">
+                <p>6/24</p>
+            </div>
+            <div class="one-third column next">
+                <p>Next -></p>
+            </div>
         </div>
-        <input type="email" name="email" placeholder="Email Address *">
-        <p class="op-fields">* Optional</p>
-        <div class="color-choices">
-            <h2>Favorite Color</h2>
-            <div class="color-sq" id="sq-option-1"></div>
-            <div class="color-sq" id="sq-option-2"></div>
-            <div class="color-sq" id="sq-option-3"></div>
-            <div class="color-sq" id="sq-option-4"></div>
-            <div class="color-sq" id="sq-option-5"></div>
-            <div class="color-sq" id="sq-option-6"></div>
-            <div class="color-sq" id="sq-option-7"></div>
-            <div class="color-sq" id="sq-option-8"></div>
-            <div class="color-sq" id="sq-option-9"></div>
-        </div>
-        <div class="submit-container">
-            <button class="" type="submit" name="createUser">Submit</button>
-        </div>
-    </form>
+    </footer>
+
 </div>
+<script type="text/javascript" src="assets/js/survey_main.js"></script>
 </body>
 
 </html>

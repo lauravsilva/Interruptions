@@ -5,9 +5,6 @@ html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%; }
 
-.container {
-  width: 800px; }
-
 h1 {
   font-weight: bold;
   font-size: 24pt;
@@ -21,6 +18,12 @@ h2 {
   font-size: 12pt;
   color: #454545;
   opacity: 0.8;
+  letter-spacing: 0.05em; }
+
+h3 {
+  font-weight: 500;
+  font-size: 2em;
+  color: #454545;
   letter-spacing: 0.05em; }
 
 p, .isolation input {
@@ -77,6 +80,89 @@ button {
   color: #888888;
   padding-left: 10px; }
 
+.survey .container {
+  width: 90%;
+  margin-bottom: 0; }
+.survey #drag-container {
+  background: black;
+  width: 100%; }
+.survey #drag-handle {
+  width: 100%;
+  height: 50px;
+  z-index: 1000;
+  cursor: move;
+  align-self: center;
+  border: 1px solid #aba9ab;
+  padding: 10px;
+  background: white; }
+.survey #slider {
+  background: none;
+  height: 400px;
+  width: 100%;
+  display: flex;
+  justify-content: center; }
+.survey .int_title {
+  text-align: center;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 40px; }
+.survey .question {
+  text-align: left;
+  margin-top: 30px;
+  margin-right: 15px; }
+.survey .slider_label {
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  font-size: 1em;
+  position: relative; }
+.survey .option1 {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  margin: 2.5rem auto; }
+.survey .option2 {
+  margin: -4rem auto;
+  position: absolute;
+  text-align: center;
+  width: 100%; }
+.survey .drag_me {
+  align-self: center;
+  padding: 0 15px; }
+.survey #summary {
+  margin: 20px;
+  text-align: center; }
+.survey h4 {
+  vertical-align: middle;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  font-weight: 500;
+  letter-spacing: 0.3em; }
+.survey footer {
+  font-size: 8pt;
+  color: #888888;
+  text-transform: uppercase;
+  font-weight: 500; }
+  .survey footer .prev {
+    text-align: left; }
+  .survey footer .pagination {
+    text-align: center; }
+  .survey footer .next {
+    text-align: right; }
+
+@media (min-width: 350px) {
+  .one-third.column {
+    width: 30.6666666667%; }
+
+  .column:first-child, .columns:first-child {
+    margin-left: 0; }
+
+  .column, .columns {
+    margin-left: 4%; } }
+.isolation .container {
+  width: 800px; }
 .isolation h1 {
   margin-top: 50px; }
 .isolation h2 {

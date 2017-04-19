@@ -26,7 +26,7 @@ var position = sliderDiv.position()
     , maxX = minX + sliderWidth
     , tickSize = sliderWidth / range;
 //the draggable object
-$("#dragcontainer").draggable({
+$("#drag-handle").draggable({
     containment: "parent"
     , drag: function (e, ui) {
         console.log("drag");
@@ -54,13 +54,17 @@ $("#dragcontainer").draggable({
             result = option1;
             $("body").css("background", "violet");
         }
-        $("#result").text(result);
+        $("#final_result").text(result);
     }
 });
 //Set slider as droppable
 sliderDiv.droppable({
     //on drop 
     drop: function (e, ui) {
+        if ($(".slider_label").length){
+            $(".slider_label").css('visibility','hidden');
+        }
+
         console.log("drop");
         var finalMidPosition = $(ui.draggable).position().top;
         val = Math.round((finalMidPosition - minX) / tickSize);
@@ -93,7 +97,7 @@ sliderDiv.droppable({
             dataType: dataType
         });*/
         //        }
-        $("#final_result").text("I am " + result);
-        $("#result").text(" ");
+        $("#final_result").text(result);
+        // $("#result").text(" ");
     }
 });
