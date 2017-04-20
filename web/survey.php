@@ -3,11 +3,6 @@
   require_once "assets/classes/DB.class.php";
   require_once "assets/classes/util.php";
 
-//  // NOTE: Smarty has a capital 'S'
-//  define('SMARTY_DIR', '/libs/');
-//  require_once('Smarty.class.php');
-//  $smarty = new Smarty();
-
   define("NUMQS", "6");
 
   $db = new DB();

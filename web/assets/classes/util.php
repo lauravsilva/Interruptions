@@ -35,25 +35,26 @@ function getToken($length)
 
 // Parse question data
 function parseQuestion($question){
+    $data = [];
     foreach($question as $key => $val){
       foreach($val as $key2 => $val2){
         if ($key2 === 'questionText'){
-          echo $val2;
+          array_push($data, $val2);
         }
       }
-      echo "<br/>" . PHP_EOL;
-    } 
+    }
+    return $data;
 }
 
 function parseOptions($options){
+    $data = [];
   foreach($options as $opKey => $opVal){
     foreach($opVal as $opKey2 => $opVal2){
       if ($opKey2 === 'answerText'){
-        echo ">> " . $opVal2 . "<br/>";
+          array_push($data, $opVal2);
+//        return ">> " . $opVal2 . "<br/>";
       }
     }
   }
-  echo "<br/><hr>" . PHP_EOL;
+  return $data;
 }
-
-?>
