@@ -17,8 +17,9 @@ function crypto_rand_secure($min, $max)
 }
 
 
-function getToken($length)
+function getToken()
 {
+    $length = 6;
     $token = "";
     $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 //    $codeAlphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -35,11 +36,13 @@ function getToken($length)
 
 // Parse question data
 function parseQuestion($question){
-    $data = [];
+    $data = '';
     foreach($question as $key => $val){
       foreach($val as $key2 => $val2){
         if ($key2 === 'questionText'){
-          array_push($data, $val2);
+            $data = $val2;
+//          array_push($data, $val2);
+//          echo $val2;
         }
       }
     }
@@ -52,9 +55,28 @@ function parseOptions($options){
     foreach($opVal as $opKey2 => $opVal2){
       if ($opKey2 === 'answerText'){
           array_push($data, $opVal2);
-//        return ">> " . $opVal2 . "<br/>";
+//        echo ">> " . $opVal2 . "<br/>";
       }
     }
   }
   return $data;
+}
+
+// Start the session
+//session_start();
+
+// remove all session variables
+//session_unset();
+
+// destroy the session
+//session_destroy();
+
+//$_SESSION["userKey"] != "")
+
+
+
+function setSession(){
+    // Set session variables
+    $_SESSION["userKey"] = getToken();
+    $_SESSION["currentQ"] = 1;
 }

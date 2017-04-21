@@ -1,10 +1,10 @@
 <?php
-  require "assets/inc/page_start.inc.php";
-  require_once "assets/classes/DB.class.php";
-  require_once "assets/classes/util.php";
+require_once 'vendor/autoload.php';
+require_once "assets/classes/DB.class.php";
+require_once "assets/classes/util.php";
 
-  $db = new DB();
-      
+$db = new DB();
+
 //  $data = $db->getUserColors();
 ////  $data = $db->getAllQuestionOptions();
 //  foreach($data as $row){
@@ -19,37 +19,33 @@
 //print_r($partner);
 
 
-    if (isset($_POST['key']) && 
-        isset($_POST['name']) && isset($_POST['color']) && isset($_POST['email'])) {
-        $db = new DB();
-        $db->addIsolationData($_POST['key'], $_POST['name'], $_POST['color'], $_POST['email']);
-    }
-    
-    $results = array(2,7,6,5,4);  
-    $userKey = getToken(6);
-    $createUser = $db->createUserWithSurveyData($userKey, $results);
+if (isset($_POST['key']) &&
+    isset($_POST['name']) && isset($_POST['color']) && isset($_POST['email'])
+) {
+    $db = new DB();
+    $db->addIsolationData($_POST['key'], $_POST['name'], $_POST['color'], $_POST['email']);
+}
+
+$results = array(2, 7, 6, 5, 4);
+$userKey = getToken();
+$createUser = $db->createUserWithSurveyData($userKey, $results);
 
 
-?>
-    <html>
+try {
+    // specify where to look for templates
+    $loader = new Twig_Loader_Filesystem('templates');
+    // initialize twig environment
+    $twig = new Twig_Environment($loader);
 
-    <head>
-        <title>Isolation</title>
-    </head>
+    // load template
+    $template = $twig->loadTemplate('isolation.html');
 
-    <body>
-        <h1>Isolation</h1>
-        <form class="form-createUser" role="form" action="thankyou.php" method="post">
-            <input type="text" name="key" placeholder="User Key">
-            <br/>
-            <input type="text" name="name" placeholder="Name">
-            <br/>
-            <input type="text" name="color" placeholder="Color">
-            <br/>
-            <input type="email" name="email" placeholder="Email">
-            <br/>
-            <button class="btn btn-fav" type="submit" name="createUser">Submit</button>
-        </form>
-    </body>
+    // set template variables and render template
+    echo $template->render(array(
+        'test' => 'test'
+    ));
 
-    </html>
+} catch (Exception $e) {
+    die('ERROR: ' . $e->getMessage());
+}
+

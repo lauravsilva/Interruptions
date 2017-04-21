@@ -1,10 +1,10 @@
 var result = "";
 var val = null;
-var option1 = "very relieved";
-var option2 = "relieved";
+var option1 = document.getElementById("op0").textContent;
+var option2 = document.getElementById("op0").textContent;
 var option3 = "neutral";
-var option4 = "disappointed";
-var option5 = "very disappointed";
+var option4 = document.getElementById("op1").textContent;
+var option5 = document.getElementById("op1").textContent;
 //Prepare the slider
 var range = 100
     , sliderDiv = $("#slider")

@@ -26,36 +26,38 @@
     <!-- JavaScript
         –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <script src="https://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
-    <script src="../assets/js/jquery-ui.js"></script>
-    <script src="../assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <script src="assets/js/jquery.ui.touch-punch.min.js"></script>
     <!-- CSS
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="stylesheet" href="../assets/css/normalize.css">
-    <link rel="stylesheet" href="../assets/css/skeleton.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/skeleton.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Favicon
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-    <link rel="shortcut icon" href="../assets/images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../assets/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
 </head>
 
 <body>
 <div class="survey">
 
     <div class="container">
-        <h3 class="question">When plans are cancelled you feel...</h3>
+        <p>{{ userKey|e }}, question {{ currentQuestion }}</p>
+        <h3 class="question">{{ questionData[0] }}</h3>
     </div>
 
     <div id="drag-container">
         <div class="slider_label">
-            <p class="option1">Relieved</p>
+            <p class="option1">{{ questionData[1][0] }}</p>
         </div>
         <div id="slider">
             <div id="drag-handle">
                 <h4><span id="final_result">Drag to answer</span></h4></div>
         </div>
         <div class="slider_label">
-            <p class="option2">Disappointed</p>
+            <p class="option2">{{ questionData[1][1] }}</p>
         </div>
     </div>
 
@@ -72,9 +74,14 @@
             </div>
         </div>
     </footer>
-
 </div>
-<script type="text/javascript" src="../assets/js/survey_main.js"></script>
+
+<div id="dom-target" style="display: none;">
+    <span id="op0">{{ questionData[1][0] }}</span>
+    <span id="op1">{{ questionData[1][1] }}</span>
+</div>
+
+<script type="text/javascript" src="assets/js/survey_main.js"></script>
 </body>
 
 </html>
