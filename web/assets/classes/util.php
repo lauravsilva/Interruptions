@@ -1,6 +1,8 @@
 <?php
-// Source: http://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string    	
 
+$db = new DB();
+
+// Source: http://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
 function crypto_rand_secure($min, $max)
 {
     $range = $max - $min;
@@ -41,8 +43,6 @@ function parseQuestion($question){
       foreach($val as $key2 => $val2){
         if ($key2 === 'questionText'){
             $data = $val2;
-//          array_push($data, $val2);
-//          echo $val2;
         }
       }
     }
@@ -55,15 +55,13 @@ function parseOptions($options){
     foreach($opVal as $opKey2 => $opVal2){
       if ($opKey2 === 'answerText'){
           array_push($data, $opVal2);
-//        echo ">> " . $opVal2 . "<br/>";
       }
     }
   }
   return $data;
 }
 
-// Start the session
-//session_start();
+
 
 // remove all session variables
 //session_unset();

@@ -44,42 +44,49 @@
 <div class="survey">
 
     <div class="container">
-        <p>{{ userKey|e }}, question {{ currentQuestion }}</p>
-        <h3 class="question">{{ questionData[0] }}</h3>
+        <div class="user-info">
+            <p>
+                <span class="icon" id="user"><img src="assets/images/account.png" alt="User Icon"/></span>
+                <span id="userkey"> {{ userKey|e }}</span>
+            </p>
+        </div>
+        <h1 class="question">{{ questionData[0] }}</h1>
+
+        <div class="row">
+            <div class="nine columns">
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{ percentProgress }}%">
+                    </div>
+                </div>
+            </div>
+            <div class="three columns next">
+                <p><a id="next-btn" onclick="nextButton()">Next</a><span class="icon"><img src="assets/images/next_arrow.png" alt="Right Arrow"/></span></p>
+            </div>
+        </div>
     </div>
 
     <div id="drag-container">
         <div class="slider_label">
+            <img src="assets/images/up_arrow.png" alt="Up Arrow"/>
             <p class="option1">{{ questionData[1][0] }}</p>
         </div>
         <div id="slider">
             <div id="drag-handle">
-                <h4><span id="final_result">Drag to answer</span></h4></div>
+                <p><span id="final_result">Drag to answer</span></p></div>
         </div>
         <div class="slider_label">
+            <img src="assets/images/down_arrow.png" alt="Up Arrow"/>
             <p class="option2">{{ questionData[1][1] }}</p>
         </div>
     </div>
 
-    <footer class="container">
-        <div class="row">
-            <div class="one-third column prev">
-                <p><- Prev</p>
-            </div>
-            <div class="one-third column pagination">
-                <p>6/24</p>
-            </div>
-            <div class="one-third column next">
-                <p>Next -></p>
-            </div>
-        </div>
-    </footer>
 </div>
 
 <div id="dom-target" style="display: none;">
     <span id="op0">{{ questionData[1][0] }}</span>
     <span id="op1">{{ questionData[1][1] }}</span>
 </div>
+
 
 <script type="text/javascript" src="assets/js/survey_main.js"></script>
 </body>

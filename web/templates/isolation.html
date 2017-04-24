@@ -43,17 +43,16 @@
     <h1>Interruptions</h1>
     <form class="form-createUser" role="form" action="thankyou.php" method="post">
         <h2>Please enter the user code you received after completing the survey:</h2>
-        <input type="text" name="key" id="key" placeholder="User Code">
+        <input type="text" name="key" id="key" placeholder="User Code" required autofocus>
         <div class="divider"></div>
         <h2>Please enter the following information:</h2>
         <div class="row">
-            <div class="one-half column">
-                <input type="text" name="name" placeholder="First Name"></div>
-            <div class="one-half column">
-                <input type="number" name="age" placeholder="Age"></div>
+            <div class="two-thirds column">
+                <input type="text" name="name" placeholder="First Name" required></div>
+            <div class="one-third column">
+                <input type="number" name="age" placeholder="Age" required></div>
         </div>
-        <input type="email" name="email" placeholder="Email Address *">
-        <p class="op-fields">* Optional</p>
+        <input type="email" name="email" placeholder="Email Address (Optional)">
         <div class="color-choices">
             <h2>Favorite Color</h2>
             <div class="color-sq" id="sq-option-1"></div>
@@ -68,6 +67,7 @@
         </div>
         <div class="submit-container">
             <button class="" type="submit" name="createUser">Submit</button>
+            <!--<span><img src="assets/images/next_arrow.png" alt="Next Arrow"></span>-->
         </div>
     </form>
 </div>

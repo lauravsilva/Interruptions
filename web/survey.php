@@ -18,9 +18,32 @@ for ($i = 1; $i <= NUMQS; $i++) {
     array_push($allQuestionsData, $thisQData);
 }
 
-setSession();
+
+// Start the session
+if(!session_id()) session_start();
+//    session_start();
 
 try {
+
+
+    if (session_status() == PHP_SESSION_NONE) {
+// && $_SESSION["userKey"] != ""
+        setSession();
+//    echo 'session set';
+    }
+//else {
+//    echo 'session already exists: ' . $_SESSION["userKey"];
+//}
+//
+//if ($_SESSION["currentQ"] > NUMQS) {
+//    // TODO: REDIRECT TO THANK YOU PAGE!!!
+//    $_SESSION["currentQ"] = 1;
+//}
+//
+
+
+
+
     // specify where to look for templates
     $loader = new Twig_Loader_Filesystem('templates');
     // initialize twig environment
@@ -31,15 +54,12 @@ try {
 
     // set template variables and render template
     echo $template->render(array(
-        'questionData' => $allQuestionsData[$_SESSION["currentQ"]],
+        'questionData' => $allQuestionsData[$_SESSION["currentQ"]-1],
         'userKey' => $_SESSION["userKey"],
-        'currentQuestion' => $_SESSION["currentQ"]
+        'currentQuestionNum' => intval($_SESSION["currentQ"]),
+        'totalQuestionNum' => NUMQS,
+        'percentProgress' => intval($_SESSION["currentQ"]) * 10
     ));
-
-//      echo $twig->render('index.html', array(
-//          'name' => 'USCSS Nostrome',
-//          'products' => array('1', '2', '3')
-//      ));
 
 } catch (Exception $e) {
     die('ERROR: ' . $e->getMessage());

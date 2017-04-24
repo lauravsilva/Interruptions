@@ -19,16 +19,16 @@ $db = new DB();
 //print_r($partner);
 
 
-if (isset($_POST['key']) &&
-    isset($_POST['name']) && isset($_POST['color']) && isset($_POST['email'])
-) {
-    $db = new DB();
-    $db->addIsolationData($_POST['key'], $_POST['name'], $_POST['color'], $_POST['email']);
-}
-
-$results = array(2, 7, 6, 5, 4);
-$userKey = getToken();
-$createUser = $db->createUserWithSurveyData($userKey, $results);
+//if (isset($_POST['key']) &&
+//    isset($_POST['name']) && isset($_POST['color']) && isset($_POST['email'])
+//) {
+//    $db = new DB();
+//    $db->addIsolationData($_POST['key'], $_POST['name'], $_POST['color'], $_POST['email']);
+//}
+//
+//$results = array(2, 7, 6, 5, 4);
+//$userKey = getToken();
+//$createUser = $db->createUserWithSurveyData($userKey, $results);
 
 
 try {

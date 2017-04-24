@@ -94,22 +94,17 @@ class DB
         }
     }
 
-    // FIX!!!!
     // update one question response based on userKey and questionNum
-    function updateQuestionResponse($userKey, $questionNum, $questionRes)
-    {
+    function updateQuestionResponse($userKey, $questionRes, $questionNum) {
+        $columnName = 'qRes' . $questionNum;
+
         try {
-            $data = array();
-            $stmt = $this->dbh->prepare("UPDATE user SET :qNum = :qRes WHERE user.userKey = :userKey");
+            $stmt = $this->dbh->prepare("UPDATE user SET $columnName = :qRes WHERE userKey = :userKey");
             $stmt->execute(array(
                 'userKey' => $userKey,
-                'qRes' => $questionRes,
-                'qNum' => $questionNum
+                'qRes' => $questionRes
             ));
-            while ($row = $stmt->fetch()) {
-                $data[] = $row;
-            }
-            return $data;
+            return $this->dbh->lastInsertId();
         } catch (PDOException $e) {
             echo $e->getMessage();
             die();
@@ -117,6 +112,7 @@ class DB
     }
 
     // Get access to partner data from their partnerKey
+
     function getPartnerData($partnerKey)
     {
         try {
@@ -139,14 +135,15 @@ class DB
     function createUserWithSurveyData($userKey, $results)
     {
         try {
-            $stmt = $this->dbh->prepare("INSERT INTO user (userKey, qRes1, qRes2, qRes3, qRes4, qRes5) VALUES (:userKey, :val1, :val2, :val3, :val4, :val5)");
+            $stmt = $this->dbh->prepare("INSERT INTO user (userKey, qRes1, qRes2, qRes3, qRes4, qRes5, qRes6) VALUES (:userKey, :val1, :val2, :val3, :val4, :val5, :val6)");
             $stmt->execute(array(
                 'userKey' => $userKey,
                 'val1' => $results[0],
                 'val2' => $results[1],
                 'val3' => $results[2],
                 'val4' => $results[3],
-                'val5' => $results[4]
+                'val5' => $results[4],
+                'val6' => $results[5]
             ));
             return $this->dbh->lastInsertId();
         } catch (PDOException $e) {
@@ -157,15 +154,16 @@ class DB
     }
 
     // Update row with userKey to add name, color, email
-    function updateUserData($userKey, $userName, $color, $email)
+    function updateUserData($userKey, $userName, $color, $email, $age)
     {
         try {
-            $stmt = $this->dbh->prepare("UPDATE user SET userName = :userName, userColor = :color, userEmail = :userEmail WHERE userKey = :userKey");
+            $stmt = $this->dbh->prepare("UPDATE user SET userName = :userName, userColor = :color, userEmail = :userEmail, userAge = :userAge WHERE userKey = :userKey");
             $stmt->execute(array(
                 "userKey" => $userKey,
                 "userName" => $userName,
                 "color" => $color,
-                "userEmail" => $email
+                "userEmail" => $email,
+                "userAge" => $age
             ));
             return $this->dbh->lastInsertId();
         } catch (PDOException $e) {
@@ -189,6 +187,22 @@ class DB
             die();
         }
     }
-}
 
-?>
+    // update the button pressed based on userKey and questionNum
+    //$buttonOrder should be '1', '2' or '3'
+    function updateButtonQuestion($userKey, $buttonPressed, $buttonOrder) {
+        $columnName = 'button' . $buttonOrder;
+
+        try {
+            $stmt = $this->dbh->prepare("UPDATE user SET $columnName = :button WHERE userKey = :userKey");
+            $stmt->execute(array(
+                'userKey' => $userKey,
+                'button' => $buttonPressed
+            ));
+            return $this->dbh->lastInsertId();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+}
