@@ -12,3 +12,4 @@ video/
 .surgeignore
 .babelrc
 db_conn.php
+.idea/
