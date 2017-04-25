@@ -44,6 +44,10 @@ p {
   color: $white;
 }
 
+a {
+  color: inherit;
+}
+
 button{
   font-size: 1em;
   font-weight: 700;
@@ -74,7 +78,9 @@ button{
 .icon {
   width: 16px;
   height: 16px;
-  display: inline-block;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
 }
 
 // I KNOW THIS IS UGLY BUT PLACEHOLDER STYLING WON'T WORK IF IT'S NOT REPEATED THIS WAY

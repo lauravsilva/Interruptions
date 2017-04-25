@@ -1,6 +1,10 @@
+#survey-page {
+  max-width: 736px;
+  margin: 0 auto;
+  color: $white;
+}
 
 .survey {
-
   // ---------------- CONTAINERS ----------------
   .container {
     width: 90%;
@@ -11,13 +15,17 @@
     width: 100%;
   }
 
-  .slider_label {
+  .slider-label {
     position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
   }
 
   .user-info {
     margin: 18px auto;
     text-align: center;
+    display: table;
     p {
       font-weight: 600;
       opacity: 0.5;
@@ -30,6 +38,15 @@
     vertical-align: middle;
   }
 
+  .progression-section {
+    margin: 20px auto 13px;
+    display: flex;
+    align-items: center;
+    p {
+      margin-bottom: 0;
+    }
+  }
+
   // ---------------- END CONTAINERS ----------------
 
   // ---------------- SLIDER ----------------
@@ -39,11 +56,15 @@
     z-index: 1000;
     cursor: move;
     align-self: center;
-    padding: 10px;
+    padding: 10px 0;
     background: $black;
-    box-shadow: 0px 0px rbga(0, 0, 0, 0.5);
+    //box-shadow: 0 0 rbga(0, 0, 0, 0.5);
+    display: table;
     p {
       font-size: 1.2em;
+      margin-bottom: 0;
+      display: table-cell;
+      vertical-align: middle;
     }
   }
 
@@ -55,7 +76,7 @@
     background: -ms-linear-gradient(90deg, rgba(18, 47, 61, 1) 0%, rgba(17, 103, 103, 1) 40%, rgba(17, 103, 103, 1) 60%, rgba(18, 47, 61, 1) 100%); /* ie10+ */
     background: linear-gradient(0deg, rgba(18, 47, 61, 1) 0%, rgba(17, 103, 103, 1) 40%, rgba(17, 103, 103, 1) 60%, rgba(18, 47, 61, 1) 100%); /* w3c */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=‘ #122f3d ’, endColorstr=‘ #122f3d ’, GradientType=0); /* ie6-9 */
-    height: 400px;
+    height: 450px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -87,11 +108,11 @@
     position: absolute;
     text-align: center;
     width: 100%;
-    margin: 2.5rem auto;
+    margin: 12.5rem auto;
   }
 
   .option2 {
-    margin: -4rem auto;
+    margin: -12.5rem auto;
     position: absolute;
     text-align: center;
     width: 100%;
@@ -108,30 +129,53 @@
   // ---------------- OTHER ----------------
   .progress {
     background: $dark-gray;
-    margin: 20px auto 13px;
     .progress-bar {
       background: $white;
       height: 5px;
     }
   }
 
-  .icon {
-    #user {
+  #user {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    img {
       margin-right: 13px;
-      display: table-cell;
-      text-align: center;
-      vertical-align: middle;
-    }
-    #right-arrow {
-      margin-left: 13px;
-    }
-    #top-arrow {
-      text-align: center;
-    }
-    #bottom-arrow {
-      text-align: center;
+      opacity: 0.5;
+      padding-top: 7px;
     }
   }
+  #right-arrow {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    img {
+      margin-left: 13px;
+      opacity: 0.5;
+    }
+  }
+  #up-arrow {
+    position: absolute;
+    text-align: center;
+    margin: 8.5rem auto 2.5em;
+    display: block;
+    left: 0;
+    right: 0;
+  }
+  #down-arrow {
+    position: absolute;
+    text-align: center;
+    margin: -8.5rem auto 0;
+    display: block;
+    left: 0;
+    right: 0;
+  }
+
+  #next-text {
+    text-align: center;
+    display: table;
+  }
+
   // ---------------- END OTHER ----------------
 
 }

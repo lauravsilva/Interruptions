@@ -6,10 +6,16 @@ var option3 = "neutral";
 var option4 = document.getElementById("op1").textContent;
 var option5 = document.getElementById("op1").textContent;
 
+var halfHandleHeight = 50/2;
+
+$(document).ready(function(){
+    // $("#up-arrow").effect("bounce", "slow");
+});
+
+
 //Prepare the slider
 var range = 100
-    , sliderDiv = $("#slider")
-    , sliderDivObj = $("#slider")[0];
+    , sliderDiv = $("#slider");
 
 // Activate the UI slider
 sliderDiv.slider({
@@ -23,39 +29,40 @@ sliderDiv.slider({
     }
 });
 var position = sliderDiv.position()
-    , sliderWidth = sliderDiv.width()
-    , minX = position.left
-    , maxX = minX + sliderWidth
-    , tickSize = sliderWidth / range;
+    , sliderHeight = sliderDiv.height()
+    , minY = position.top
+    , maxY = minY + sliderHeight
+    , tickSize = sliderHeight / range;
 
 //the draggable object
 $("#drag-handle").draggable({
-    containment: "parent"
+    containment: "parent",
+    axis: "y"
     , drag: function (e, ui) {
-        console.log("drag");
+
         var offset = $(this).offset();
-        var containerPosition = offset.top;
-        resValue = Math.round((containerPosition - minX) / tickSize);
+        var containerTop = offset.top;
+        resValue = Math.round((containerTop - minY + halfHandleHeight) / tickSize);
+
+        console.log("containerTop: " + containerTop);
+        console.log("resValue drag: " + resValue);
+
         sliderDiv.slider("value", resValue);
-        if (resValue == 50) {
+
+        if (resValue === 50) {
             result = option3;
-            $("body").css("background", "blue");
         }
         else if (resValue > 50 && resValue < 75) {
             result = option4;
-            $("body").css("background", "green");
         }
         else if (resValue >= 75) {
             result = option5;
-            $("body").css("background", "yellow");
         }
         else if (resValue < 50 && resValue > 25) {
-            $("body").css("background", "orange");
             result = option2;
         }
         else if (resValue < 50) {
             result = option1;
-            $("body").css("background", "violet");
         }
         $("#final_result").text(result);
     }
@@ -65,31 +72,61 @@ $("#drag-handle").draggable({
 sliderDiv.droppable({
     //on drop 
     drop: function (e, ui) {
-        if ($(".slider_label").length) {
-            $(".slider_label").css('visibility', 'hidden');
+        if ($(".slider-label").length) {
+            $(".slider-label").fadeOut("800", function(){
+                $(".slider-label").css('visibility', 'hidden');
+            });
+        }
+        if ($("#next-text").length){
+            $("#next-text").fadeIn("800", function(){
+                $("#next-text").css('opacity', '1.0');
+            });
         }
 
-        console.log("drop");
         var finalMidPosition = $(ui.draggable).position().top;
-        resValue = Math.round((finalMidPosition - minX) / tickSize);
+        resValue = Math.round((finalMidPosition - minY + halfHandleHeight) / tickSize);
+
+        console.log("finalMid: " + finalMidPosition);
+        console.log("resValue drop: " + resValue);
+
+
         sliderDiv.slider("value", resValue);
-        if (resValue == 50) {
+
+        if (resValue === 50) {
             result = option3;
+            $("#drag-handle").fadeTo(500, 0.8, function(){
+                $(this).css("background", "#020b11");
+            });
         }
         else if (resValue > 50 && resValue < 75) {
             result = option4;
+            $("#drag-handle").fadeTo(500, 0.8, function(){
+                $(this).css("background", "#26c5c4");
+            });
         }
         else if (resValue >= 75) {
             result = option5;
+            $("#drag-handle").fadeTo(500, 0.8, function(){
+                $(this).css("background", "#122f3d");
+            });
         }
         else if (resValue < 50 && resValue > 25) {
             result = option2;
+            $("#drag-handle").fadeTo(500, 0.8, function(){
+                $(this).css("background", "#26c5c4");
+            });
         }
         else if (resValue < 50) {
             result = option1;
+            $("#drag-handle").fadeTo(500, 0.8, function(){
+                $(this).css("background", "#122f3d");
+            });
         }
         //update result on page
-        console.log(result + ": " + resValue + "%");
+        // console.log(result + ": " + resValue + "%");
+
+
+
         //do ajax update here to set the position
         /*$.ajax({
          type: "POST",
@@ -137,7 +174,10 @@ function nextButton(){
     $.ajax({
         type: "POST",
         url: 'survey_nextbtn.php',
-        data:{action:'call_this', value: resValue},
+        data:{
+            action:'call_this',
+            value: resValue
+        },
         success:function(html) {
             // alert(html);
             location.reload();

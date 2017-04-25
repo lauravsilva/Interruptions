@@ -40,19 +40,18 @@
 
 </head>
 
-<body>
+<body id="survey-page">
 <div class="survey">
 
     <div class="container">
         <div class="user-info">
-            <p>
                 <span class="icon" id="user"><img src="assets/images/account.png" alt="User Icon"/></span>
-                <span id="userkey"> {{ userKey|e }}</span>
-            </p>
+                <p id="userkey"> {{ userKey|e }}</p>
         </div>
+
         <h1 class="question">{{ questionData[0] }}</h1>
 
-        <div class="row">
+        <div class="progression-section row">
             <div class="nine columns">
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{ percentProgress }}%">
@@ -60,22 +59,22 @@
                 </div>
             </div>
             <div class="three columns next">
-                <p><a id="next-btn" onclick="nextButton()">Next</a><span class="icon"><img src="assets/images/next_arrow.png" alt="Right Arrow"/></span></p>
+                <p id="next-text"><a id="next-btn" onclick="nextButton()">Next</a><span class="icon"><img src="assets/images/next_arrow.png" alt="Right Arrow" id="right-arrow"/></span></p>
             </div>
         </div>
     </div>
 
     <div id="drag-container">
-        <div class="slider_label">
-            <img src="assets/images/up_arrow.png" alt="Up Arrow"/>
+        <div class="slider-label">
+            <img src="assets/images/up_arrow.png" alt="Up Arrow" id="up-arrow"/>
             <p class="option1">{{ questionData[1][0] }}</p>
         </div>
         <div id="slider">
             <div id="drag-handle">
                 <p><span id="final_result">Drag to answer</span></p></div>
         </div>
-        <div class="slider_label">
-            <img src="assets/images/down_arrow.png" alt="Up Arrow"/>
+        <div class="slider-label">
+            <img src="assets/images/down_arrow.png" alt="Up Arrow"id="down-arrow"/>
             <p class="option2">{{ questionData[1][1] }}</p>
         </div>
     </div>

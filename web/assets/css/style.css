@@ -30,6 +30,9 @@ p, .isolation input {
   font-size: 1.1em;
   color: #f7f6f6; }
 
+a {
+  color: inherit; }
+
 button {
   font-size: 1em;
   font-weight: 700;
@@ -56,7 +59,9 @@ button {
 .icon {
   width: 16px;
   height: 16px;
-  display: inline-block; }
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle; }
 
 :-moz-placeholder {
   /* Firefox 18- */
@@ -142,16 +147,25 @@ button {
   text-transform: capitalize !important;
   letter-spacing: 0 !important; }
 
+#survey-page {
+  max-width: 736px;
+  margin: 0 auto;
+  color: #f7f6f6; }
+
 .survey .container {
   width: 90%;
   margin-bottom: 0; }
 .survey #drag-container {
   width: 100%; }
-.survey .slider_label {
-  position: relative; }
+.survey .slider-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-align: center; }
 .survey .user-info {
   margin: 18px auto;
-  text-align: center; }
+  text-align: center;
+  display: table; }
   .survey .user-info p, .survey .user-info .isolation input, .isolation .survey .user-info input {
     font-weight: 600;
     opacity: 0.5; }
@@ -159,17 +173,26 @@ button {
   display: table-cell;
   text-align: center;
   vertical-align: middle; }
+.survey .progression-section {
+  margin: 20px auto 13px;
+  display: flex;
+  align-items: center; }
+  .survey .progression-section p, .survey .progression-section .isolation input, .isolation .survey .progression-section input {
+    margin-bottom: 0; }
 .survey #drag-handle {
   width: 100%;
   height: 50px;
   z-index: 1000;
   cursor: move;
   align-self: center;
-  padding: 10px;
+  padding: 10px 0;
   background: #020b11;
-  box-shadow: 0px 0px rbga(0, 0, 0, 0.5); }
+  display: table; }
   .survey #drag-handle p, .survey #drag-handle .isolation input, .isolation .survey #drag-handle input {
-    font-size: 1.2em; }
+    font-size: 1.2em;
+    margin-bottom: 0;
+    display: table-cell;
+    vertical-align: middle; }
 .survey #slider {
   background: -moz-linear-gradient(90deg, #122f3d 0%, #116767 40%, #116767 60%, #122f3d 100%);
   /* ff3.6+ */
@@ -185,7 +208,7 @@ button {
   /* w3c */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=‘ #122f3d ’, endColorstr=‘ #122f3d ’, GradientType=0);
   /* ie6-9 */
-  height: 400px;
+  height: 450px;
   width: 100%;
   display: flex;
   justify-content: center; }
@@ -209,9 +232,9 @@ button {
   position: absolute;
   text-align: center;
   width: 100%;
-  margin: 2.5rem auto; }
+  margin: 12.5rem auto; }
 .survey .option2 {
-  margin: -4rem auto;
+  margin: -12.5rem auto;
   position: absolute;
   text-align: center;
   width: 100%; }
@@ -220,22 +243,42 @@ button {
   .survey .next :hover {
     opacity: 1; }
 .survey .progress {
-  background: #343034;
-  margin: 20px auto 13px; }
+  background: #343034; }
   .survey .progress .progress-bar {
     background: #f7f6f6;
     height: 5px; }
-.survey .icon #user {
-  margin-right: 13px;
+.survey #user {
   display: table-cell;
   text-align: center;
   vertical-align: middle; }
-.survey .icon #right-arrow {
-  margin-left: 13px; }
-.survey .icon #top-arrow {
-  text-align: center; }
-.survey .icon #bottom-arrow {
-  text-align: center; }
+  .survey #user img {
+    margin-right: 13px;
+    opacity: 0.5;
+    padding-top: 7px; }
+.survey #right-arrow {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle; }
+  .survey #right-arrow img {
+    margin-left: 13px;
+    opacity: 0.5; }
+.survey #up-arrow {
+  position: absolute;
+  text-align: center;
+  margin: 8.5rem auto 2.5em;
+  display: block;
+  left: 0;
+  right: 0; }
+.survey #down-arrow {
+  position: absolute;
+  text-align: center;
+  margin: -8.5rem auto 0;
+  display: block;
+  left: 0;
+  right: 0; }
+.survey #next-text {
+  text-align: center;
+  display: table; }
 
 @media (min-width: 350px) {
   .three.columns {
