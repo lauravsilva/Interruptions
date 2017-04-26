@@ -15,8 +15,8 @@ if ($_POST['action'] == 'call_this') {
     // Increment currentQ
     if ($_SESSION["currentQ"] >= NUMQS) {
         // TODO: REDIRECT TO THANK YOU PAGE!!!
-        $_SESSION["currentQ"] = 1;
-        session_destroy();
+//        $_SESSION["currentQ"] = 1;
+//        session_destroy();
     }
 
     else {

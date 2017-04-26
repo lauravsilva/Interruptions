@@ -83,6 +83,13 @@ button{
   vertical-align: middle;
 }
 
+#survey-page, #thankyou-page {
+  max-width: 736px;
+  margin: 0 auto;
+  color: $white;
+}
+
+
 // I KNOW THIS IS UGLY BUT PLACEHOLDER STYLING WON'T WORK IF IT'S NOT REPEATED THIS WAY
 :-moz-placeholder { /* Firefox 18- */
   font-style: italic;
