@@ -57,6 +57,23 @@ class DB
         }
     }
 
+    // Get all userKeys data
+    function getAllUserKeys()
+    {
+        try {
+            $data = array();
+            $stmt = $this->dbh->prepare("select userKey from user");
+            $stmt->execute();
+            while ($row = $stmt->fetch()) {
+                $data[] = $row;
+            }
+            return $data;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
 // Get a question based on the questionID  
     function getQuestion($questionID)
     {
@@ -94,6 +111,21 @@ class DB
         }
     }
 
+    // create user on the db and add response to q1
+    function createUserWithQOne($userKey, $questionRes) {
+        try {
+            $stmt = $this->dbh->prepare("INSERT INTO user (userKey, qRes1) VALUES (:userKey, :res1)");
+            $stmt->execute(array(
+                'userKey' => $userKey,
+                'res1' => $questionRes
+            ));
+            return $this->dbh->lastInsertId();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
     // update one question response based on userKey and questionNum
     function updateQuestionResponse($userKey, $questionRes, $questionNum) {
         $columnName = 'qRes' . $questionNum;
@@ -104,6 +136,7 @@ class DB
                 'userKey' => $userKey,
                 'qRes' => $questionRes
             ));
+
             return $this->dbh->lastInsertId();
         } catch (PDOException $e) {
             echo $e->getMessage();

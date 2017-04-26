@@ -44,9 +44,6 @@ $("#drag-handle").draggable({
         var containerTop = offset.top;
         resValue = Math.round((containerTop - minY + halfHandleHeight) / tickSize);
 
-        console.log("containerTop: " + containerTop);
-        console.log("resValue drag: " + resValue);
-
         sliderDiv.slider("value", resValue);
 
         if (resValue === 50) {
@@ -86,10 +83,6 @@ sliderDiv.droppable({
         var finalMidPosition = $(ui.draggable).position().top;
         resValue = Math.round((finalMidPosition - minY + halfHandleHeight) / tickSize);
 
-        console.log("finalMid: " + finalMidPosition);
-        console.log("resValue drop: " + resValue);
-
-
         sliderDiv.slider("value", resValue);
 
         if (resValue === 50) {
@@ -123,7 +116,7 @@ sliderDiv.droppable({
             });
         }
         //update result on page
-        // console.log(result + ": " + resValue + "%");
+        console.log(result + ": " + resValue + "%");
 
 
 
@@ -179,7 +172,6 @@ function nextButton(){
             value: resValue
         },
         success:function(html) {
-            // alert(html);
             location.reload();
         }
 

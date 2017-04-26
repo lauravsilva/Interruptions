@@ -1,6 +1,6 @@
 <?php
 
-$db = new DB();
+
 
 // Source: http://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
 function crypto_rand_secure($min, $max)
@@ -61,20 +61,27 @@ function parseOptions($options){
   return $data;
 }
 
-
-
-// remove all session variables
-//session_unset();
-
-// destroy the session
-//session_destroy();
-
-//$_SESSION["userKey"] != "")
-
-
-
 function setSession(){
+    $db = new DB();
+    $userKeys = $db->getAllUserKeys();
+    $data = [];
+
+    $generateKey = getToken();
+
+    foreach($userKeys as $key => $val){
+        foreach($val as $key2 => $val2){
+            if ($key2 === 'userKey') {
+                array_push($data, $val2);
+            }
+        }
+    }
+
+    // Make sure the generated key doesn't already exist in db
+    while(in_array($generateKey, $data)){
+        $generateKey = getToken();
+    }
+
     // Set session variables
-    $_SESSION["userKey"] = getToken();
+    $_SESSION["userKey"] = $generateKey;
     $_SESSION["currentQ"] = 1;
 }

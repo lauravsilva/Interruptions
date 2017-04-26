@@ -7,14 +7,15 @@ require_once "assets/classes/util.php";
 session_start();
 
 if ($_POST['action'] == 'call_this') {
-    // TODO: Update response!
+
     $val = $_POST['value'];
+
     updateDB($val);
 
     // Increment currentQ
     if ($_SESSION["currentQ"] >= NUMQS) {
         // TODO: REDIRECT TO THANK YOU PAGE!!!
-//        $_SESSION["currentQ"] = 1;
+        $_SESSION["currentQ"] = 1;
         session_destroy();
     }
 
@@ -26,6 +27,10 @@ if ($_POST['action'] == 'call_this') {
 function updateDB($response){
     $db = new DB();
 
-    $db->updateQuestionResponse($_SESSION["userKey"], $response, intval($_SESSION["currentQ"]));
-
+    if ($_SESSION["currentQ"] == 1){
+        $db->createUserWithQOne($_SESSION["userKey"], $response);
+    }
+    else {
+        $db->updateQuestionResponse($_SESSION["userKey"], $response, intval($_SESSION["currentQ"]));
+    }
 }
