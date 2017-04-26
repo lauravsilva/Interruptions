@@ -30,6 +30,7 @@ try {
         'userKey' => $userKey
     ));
 
+    // destroy session after data is passed to template
     if (isset($_SESSION['userKey'])) {
         session_destroy();
         $_SESSION["currentQ"] = 1;

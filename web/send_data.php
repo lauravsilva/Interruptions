@@ -21,4 +21,10 @@ echo  $_SESSION["currentQ"] . '<br/>';
 
 //$db->createUserWithSurveyData('RX537Y',array(1,3,5,7,9,11));
 
+//
+//echo '<script type="text/javascript">window.location = "thankyou.php"</script>';
 
+
+// TODO: REDIRECT TO THANK YOU PAGE!!!
+redirect("thankyou.php");
+return;

@@ -85,3 +85,9 @@ function setSession(){
     $_SESSION["userKey"] = $generateKey;
     $_SESSION["currentQ"] = 1;
 }
+
+function redirect($url, $statusCode = 303)
+{
+    header('Location: ' . $url, true, $statusCode);
+    die();
+}

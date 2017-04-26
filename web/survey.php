@@ -5,6 +5,7 @@ require_once "assets/classes/util.php";
 
 $db = new DB();
 
+// TODO: Adjust numquestions
 define("NUMQS", "6");
 $allQuestionsData = [];
 
@@ -34,6 +35,12 @@ try {
     if (!isset($_SESSION['userKey'])) {
         setSession();
     }
+
+    if ($_SESSION["currentQ"] === NUMQS+1 ){
+        redirect("thankyou.php");
+        return;
+    }
+
     echo $template->render(array(
         'questionData' => $allQuestionsData[$_SESSION["currentQ"] - 1],
         'userKey' => $_SESSION["userKey"],
@@ -44,3 +51,5 @@ try {
 } catch (Exception $e) {
     die('ERROR: ' . $e->getMessage());
 }
+
+
