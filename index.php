@@ -16,6 +16,6 @@
 </head>
 
 <body>
-<img src="web/assets/images/logo.jpg" alt="Logo">
+<img src="assets/images/logo.jpg" alt="Logo">
 </body>
 </html>
