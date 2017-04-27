@@ -41,7 +41,8 @@
 <body>
 <div class="container isolation">
     <h1>Interruptions</h1>
-    <form id="completeUserForm" class="form-completeUser" role="form" onsubmit="submitButton(); return false;" method="post">
+    <form id="completeUserForm" class="form-completeUser" role="form" onsubmit="submitButton(); return false;"
+          method="post">
         <h2>Please enter the user code you received after completing the survey:</h2>
         <input type="text" name="key" id="key" placeholder="User Code" maxlength="6" required autofocus>
         <div class="divider"></div>
@@ -55,18 +56,29 @@
         <input type="email" name="email" placeholder="Email Address (Optional)">
         <div class="color-choices">
             <h2>Favorite Color</h2>
-            <div class="color-sq" id="sq-option-1"></div>
-            <div class="color-sq" id="sq-option-2"></div>
-            <div class="color-sq" id="sq-option-3"></div>
-            <div class="color-sq" id="sq-option-4"></div>
-            <div class="color-sq" id="sq-option-5"></div>
-            <div class="color-sq" id="sq-option-6"></div>
-            <div class="color-sq" id="sq-option-7"></div>
-            <div class="color-sq" id="sq-option-8"></div>
-            <div class="color-sq" id="sq-option-9"></div>
+            <ul id="selectable">
+                <li class="color-sq ui-state-default" id="sq-option-1" data-color="e9233e">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-2" data-color="f56237">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-3" data-color="f3c347">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-4" data-color="2bd234">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-5" data-color="26c5c4">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-6" data-color="244f6a">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-7" data-color="603662">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-8" data-color="d42988">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-9" data-color="f76c6e">
+                </li>
+            </ul>
         </div>
         <div class="submit-container">
-                <button id="completeUserBtn" type="" name="completeUser">Submit</button>
+            <button id="completeUserBtn" type="" name="completeUser">Submit</button>
             <!--<span><img src="assets/images/next_arrow.png" alt="Next Arrow"></span>-->
         </div>
     </form>

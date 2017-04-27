@@ -1,12 +1,12 @@
 var result = "";
-var resValue = null;
+var resValue = 50;
 var option1 = document.getElementById("op0").textContent;
 var option2 = document.getElementById("op0").textContent;
 var option3 = "neutral";
 var option4 = document.getElementById("op1").textContent;
 var option5 = document.getElementById("op1").textContent;
 
-var halfHandleHeight = 50/2;
+var halfHandleHeight = 70;
 
 $(document).ready(function(){
     // $("#up-arrow").effect("bounce", "slow");
@@ -42,8 +42,9 @@ $("#drag-handle").draggable({
 
         var offset = $(this).offset();
         var containerTop = offset.top;
-        resValue = Math.round((containerTop - minY + halfHandleHeight) / tickSize);
+        resValue = Math.round((containerTop - minY - halfHandleHeight) / tickSize);
 
+        console.log("containerTop: " + containerTop);
         sliderDiv.slider("value", resValue);
 
         if (resValue === 50) {
@@ -81,6 +82,7 @@ sliderDiv.droppable({
         }
 
         var finalMidPosition = $(ui.draggable).position().top;
+        console.log("draggable: " + finalMidPosition);
         resValue = Math.round((finalMidPosition - minY + halfHandleHeight) / tickSize);
 
         sliderDiv.slider("value", resValue);

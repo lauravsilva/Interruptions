@@ -80,6 +80,22 @@ $coral: #f76c6e;
     }
   }
 
+  #selectable {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    .ui-selecting {
+      -webkit-box-shadow:inset 0px 0px 0px 2px $white;
+      -moz-box-shadow:inset 0px 0px 0px 2px $white;
+      box-shadow:inset 0px 0px 0px 2px $white;
+    }
+    .ui-selected {
+      -webkit-box-shadow:inset 0px 0px 0px 2px $white;
+      -moz-box-shadow:inset 0px 0px 0px 2px $white;
+      box-shadow:inset 0px 0px 0px 2px $white;
+    }
+  }
+
   button {
     width: 475px;
     height: 55px;

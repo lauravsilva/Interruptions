@@ -181,7 +181,7 @@ button {
     margin-bottom: 0; }
 .survey #drag-handle {
   width: 100%;
-  height: 50px;
+  height: 70px;
   z-index: 1000;
   cursor: move;
   align-self: center;
@@ -406,6 +406,18 @@ button {
   .isolation .color-choices #sq-option-9 {
     background: #f76c6e;
     margin-right: 0; }
+.isolation #selectable {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
+  .isolation #selectable .ui-selecting {
+    -webkit-box-shadow: inset 0px 0px 0px 2px #f7f6f6;
+    -moz-box-shadow: inset 0px 0px 0px 2px #f7f6f6;
+    box-shadow: inset 0px 0px 0px 2px #f7f6f6; }
+  .isolation #selectable .ui-selected {
+    -webkit-box-shadow: inset 0px 0px 0px 2px #f7f6f6;
+    -moz-box-shadow: inset 0px 0px 0px 2px #f7f6f6;
+    box-shadow: inset 0px 0px 0px 2px #f7f6f6; }
 .isolation button {
   width: 475px;
   height: 55px; }

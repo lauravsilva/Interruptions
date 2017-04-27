@@ -26,14 +26,14 @@ $email = '';
 $color = '';
 
 // TODO: if key doesn't exist, show error message
-try {
+//try {
     if (isset($_POST['key']) and validateUserKey($_POST['key']) === 1) {
         $key = $_POST['key'];
     }
-}
-catch(Exception $e){
-    echo 'Sorry, there was an error: ' . $e->getMessage();
-}
+//}
+//catch(Exception $e){
+//    echo 'Sorry, there was an error: ' . $e->getMessage();
+//}
 
 
 if (isset($_POST['name'])){
