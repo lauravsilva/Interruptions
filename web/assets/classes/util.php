@@ -91,3 +91,25 @@ function redirect($url, $statusCode = 303)
     header('Location: ' . $url, true, $statusCode);
     die();
 }
+
+function validateUserKey($keyToCheck){
+    $db = new DB();
+    $data = [];
+    $result = 0;
+
+    $userKeys = $db->getAllUserKeys();
+
+    foreach($userKeys as $key => $val){
+        foreach($val as $key2 => $val2){
+            if ($key2 === 'userKey') {
+                array_push($data, $val2);
+            }
+        }
+    }
+
+    if (in_array($keyToCheck, $data, true)){
+        $result = 1;
+    }
+
+    return $result;
+}

@@ -6,10 +6,10 @@
     $db = new DB();
 
 // Start the session
-session_start();
-
-echo  $_SESSION["userKey"] . '<br/>';
-echo  $_SESSION["currentQ"] . '<br/>';
+//session_start();
+//
+//echo  $_SESSION["userKey"] . '<br/>';
+//echo  $_SESSION["currentQ"] . '<br/>';
 
 //    $answer = $db->getQuestion(1);
 //    print_r($answer);
@@ -25,6 +25,57 @@ echo  $_SESSION["currentQ"] . '<br/>';
 //echo '<script type="text/javascript">window.location = "thankyou.php"</script>';
 
 
-// TODO: REDIRECT TO THANK YOU PAGE!!!
-redirect("thankyou.php");
-return;
+
+//redirect("thankyou.php");
+//return;
+
+$key = '';
+$name = '';
+$age = '';
+$email = '';
+$color = '';
+
+
+$_POST['key'] = 'UT3M38';
+
+//&& validateUserKey($_POST['key']) === 1
+if (isset($_POST['key']) and validateUserKey($_POST['key']) === 1){
+    echo 'key isset';
+//    if (validateUserKey($_POST['key']) === 1){
+        echo 'key === 1';
+//    }
+    $key = $_POST['key'];
+}
+else {
+    // handle error
+    echo 'key else';
+//    return;
+}
+
+if (isset($_POST['name'])){
+    echo 'name isset';
+    $name = $_POST['name'];
+}
+if (isset($_POST['age'])){
+    echo 'age isset';
+    $age = $_POST['age'];
+}
+if (isset($_POST['email'])){
+    echo 'email isset';
+    $email = $_POST['email'];
+}
+if (isset($_POST['color'])){
+    echo 'color isset';
+    $color = $_POST['color'];
+}
+
+
+updateDB($key, $name, $age, $email, $color);
+
+
+function updateDB($key, $name, $age, $email, $color){
+    $db = new DB();
+
+    $db->addIsolationData($key, $name, $age, $email, $color);
+
+}

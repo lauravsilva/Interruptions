@@ -186,17 +186,22 @@ class DB
 
     }
 
-    // Update row with userKey to add name, color, email
-    function updateUserData($userKey, $userName, $color, $email, $age)
+    // Update row with userKey to add name, color, email (isolation data)
+    function addIsolationData($userKey, $userName, $age, $email, $color)
     {
+        echo 'addisolation data';
+        $timestamp = date("Y-m-d H:i:s");
+        echo $timestamp;
+
         try {
-            $stmt = $this->dbh->prepare("UPDATE user SET userName = :userName, userColor = :color, userEmail = :userEmail, userAge = :userAge WHERE userKey = :userKey");
+            $stmt = $this->dbh->prepare("UPDATE user SET userName = :userName, userColor = :color, userEmail = :userEmail, userAge = :userAge, timeStamp = :timestamp WHERE userKey = :userKey");
             $stmt->execute(array(
                 "userKey" => $userKey,
                 "userName" => $userName,
                 "color" => $color,
                 "userEmail" => $email,
-                "userAge" => $age
+                "userAge" => $age,
+                "timestamp" => $timestamp
             ));
             return $this->dbh->lastInsertId();
         } catch (PDOException $e) {

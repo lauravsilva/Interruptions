@@ -12,6 +12,7 @@ $allQuestionsData = [];
 // Start the session
 session_start();
 
+//TODO: Only execute this code once
 for ($i = 1; $i <= NUMQS; $i++) {
     $question = $db->getQuestion($i);
     $parsedQ = parseQuestion($question);
