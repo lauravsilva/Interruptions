@@ -21,7 +21,7 @@ function crypto_rand_secure($min, $max)
 
 function getToken()
 {
-    $length = 6;
+    $length = 5;
     $token = "";
     $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 //    $codeAlphabet = "abcdefghijklmnopqrstuvwxyz";
