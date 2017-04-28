@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Basic Page Needs
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta charset="utf-8">
+    <title>Interruptions</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://use.typekit.net/zst6xie.js"></script>
+    <script>
+        try {
+            Typekit.load({
+                async: true
+            });
+        }
+        catch (e) {
+        }
+    </script>
+    <!-- JavaScript
+       –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <script src="https://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+    <script src="assets/js/jquery-ui.js"></script>
+    <!-- CSS
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="stylesheet" href="assets/css/normalize.css">
+    <link rel="stylesheet" href="assets/css/skeleton.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Favicon
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+<div class="container isolation">
+    <h1>Interruptions</h1>
+    <form id="completeUserForm" class="form-completeUser" role="form" onsubmit="submitButton(); return false;"
+          method="post">
+        <h2>Please enter the user code you received after completing the survey:</h2>
+        <input type="text" name="key" id="key" placeholder="User Code" maxlength="6" required autofocus>
+        <div class="divider"></div>
+        <h2>Please enter the following information:</h2>
+        <div class="row">
+            <div class="two-thirds column">
+                <input type="text" name="name" placeholder="First Name" required></div>
+            <div class="one-third column">
+                <input type="number" name="age" placeholder="Age" required></div>
+        </div>
+        <input type="email" name="email" placeholder="Email Address (Optional)">
+        <div class="color-choices">
+            <h2>Favorite Color</h2>
+            <ul id="selectable">
+                <li class="color-sq ui-state-default" id="sq-option-1" data-color="e9233e">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-2" data-color="f56237">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-3" data-color="f3c347">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-4" data-color="2bd234">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-5" data-color="26c5c4">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-6" data-color="244f6a">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-7" data-color="603662">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-8" data-color="d42988">
+                </li>
+                <li class="color-sq ui-state-default" id="sq-option-9" data-color="f76c6e">
+                </li>
+            </ul>
+        </div>
+        <div class="submit-container">
+            <button id="completeUserBtn" type="" name="completeUser">Submit</button>
+            <!--<span><img src="assets/images/next_arrow.png" alt="Next Arrow"></span>-->
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="assets/js/isolation_main.js"></script>
+
+</body>
+
+</html>
