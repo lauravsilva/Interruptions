@@ -55,7 +55,7 @@
             {% set keyArray = userKey|split('') %}
             {% for key in keyArray %}
             <div class="key-box">
-                <h1>{{ key }}</h1>
+                <span class="box"><h1>{{ key }}</h1></span>
             </div>
             {% endfor %}
         </div>
@@ -64,7 +64,7 @@
 
         <div class="submitnewuser-container">
             <form action="survey.php">
-                <button class="createNewUser-btn" type="submit">New User</button>
+                <button class="createNewUser-btn" type="submit">Create New User</button>
             </form>
                 <!--<span><img src="assets/images/next_arrow.png" alt="Next Arrow"></span>-->
         </div>

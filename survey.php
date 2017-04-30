@@ -6,7 +6,7 @@ require_once "assets/classes/util.php";
 $db = new DB();
 
 // TODO: Adjust numquestions
-define("NUMQS", "6");
+define("NUMQS", "24");
 $allQuestionsData = [];
 
 // Start the session

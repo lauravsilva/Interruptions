@@ -1,12 +1,12 @@
 var result = "";
 var resValue = 50;
 var option1 = document.getElementById("op0").textContent;
-var option2 = document.getElementById("op0").textContent;
-var option3 = "neutral";
-var option4 = document.getElementById("op1").textContent;
-var option5 = document.getElementById("op1").textContent;
+var option2 = document.getElementById("op1").textContent;
+var option3 = document.getElementById("op2").textContent;
+var option4 = document.getElementById("op3").textContent;
+var option5 = document.getElementById("op4").textContent;
 
-var halfHandleHeight = 70;
+var halfHandleHeight = 60;
 
 $(document).ready(function(){
     // $("#up-arrow").effect("bounce", "slow");
@@ -40,13 +40,23 @@ $("#drag-handle").draggable({
     axis: "y"
     , drag: function (e, ui) {
 
+        $("#drag-handle").fadeTo(300, 0.7, function(){
+            $("#drag-handle").css("background", "#020b11");
+        });
+        if ($(".slider-label").length) {
+            $(".slider-label").fadeOut("800", function(){
+                $(".slider-label").css('visibility', 'hidden');
+            });
+        }
+
         var offset = $(this).offset();
         var containerTop = offset.top;
         resValue = Math.round((containerTop - minY - halfHandleHeight) / tickSize);
 
-        console.log("containerTop: " + containerTop);
+
         sliderDiv.slider("value", resValue);
 
+        //TODO: adjust these numbers to make more sense
         if (resValue === 50) {
             result = option3;
         }
@@ -70,11 +80,14 @@ $("#drag-handle").draggable({
 sliderDiv.droppable({
     //on drop 
     drop: function (e, ui) {
-        if ($(".slider-label").length) {
-            $(".slider-label").fadeOut("800", function(){
-                $(".slider-label").css('visibility', 'hidden');
-            });
-        }
+        $("#drag-handle").fadeTo(300, 1.0, function(){
+            $("#drag-handle").css("background", "#020b11");
+            // $("#drag-handle").css('opacity', '1.0');
+        });
+        // $("#drag-handle").fadeTo(800, 1.0, function(){
+        //     $(this).css("background", "#020b11");
+        //     $(this).css('opacity', '1.0');
+        // });
         if ($("#next-text").length){
             $("#next-text").fadeIn("800", function(){
                 $("#next-text").css('opacity', '1.0');
@@ -82,40 +95,24 @@ sliderDiv.droppable({
         }
 
         var finalMidPosition = $(ui.draggable).position().top;
-        console.log("draggable: " + finalMidPosition);
         resValue = Math.round((finalMidPosition - minY + halfHandleHeight) / tickSize);
 
         sliderDiv.slider("value", resValue);
 
         if (resValue === 50) {
             result = option3;
-            $("#drag-handle").fadeTo(500, 0.8, function(){
-                $(this).css("background", "#020b11");
-            });
         }
         else if (resValue > 50 && resValue < 75) {
             result = option4;
-            $("#drag-handle").fadeTo(500, 0.8, function(){
-                $(this).css("background", "#26c5c4");
-            });
         }
         else if (resValue >= 75) {
             result = option5;
-            $("#drag-handle").fadeTo(500, 0.8, function(){
-                $(this).css("background", "#122f3d");
-            });
         }
         else if (resValue < 50 && resValue > 25) {
             result = option2;
-            $("#drag-handle").fadeTo(500, 0.8, function(){
-                $(this).css("background", "#26c5c4");
-            });
         }
         else if (resValue < 50) {
             result = option1;
-            $("#drag-handle").fadeTo(500, 0.8, function(){
-                $(this).css("background", "#122f3d");
-            });
         }
         //update result on page
         console.log(result + ": " + resValue + "%");

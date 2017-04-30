@@ -1,10 +1,7 @@
 <?php
 
-
-
 // Source: http://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
-function crypto_rand_secure($min, $max)
-{
+function crypto_rand_secure($min, $max){
     $range = $max - $min;
     if ($range < 1) return $min; // not so random...
     $log = ceil(log($range, 2));
@@ -19,8 +16,7 @@ function crypto_rand_secure($min, $max)
 }
 
 
-function getToken()
-{
+function getToken(){
     $length = 5;
     $token = "";
     $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -86,13 +82,12 @@ function setSession(){
     $_SESSION["currentQ"] = 1;
 }
 
-function redirect($url, $statusCode = 303)
-{
+function redirect($url, $statusCode = 303) {
     header('Location: ' . $url, true, $statusCode);
     die();
 }
 
-function validateUserKey($keyToCheck){
+function validateUserKey($keyToCheck) {
     $db = new DB();
     $data = [];
     $result = 0;

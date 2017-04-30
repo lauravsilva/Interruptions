@@ -6,6 +6,21 @@
     margin-bottom: 0;
   }
 
+  .three.columns {
+    width: 22%;
+  }
+
+  .nine.columns {
+    width: 74%;
+  }
+
+  .column:first-child, .columns:first-child {
+    margin-left: 0;
+  }
+  .column, .columns {
+    margin-left: 4%;
+  }
+
   #drag-container {
     width: 100%;
   }
@@ -18,7 +33,7 @@
   }
 
   .user-info {
-    margin: 18px auto;
+    margin: 10px auto 8px;
     text-align: center;
     display: table;
     p {
@@ -34,7 +49,7 @@
   }
 
   .progression-section {
-    margin: 20px auto 13px;
+    margin: 15px auto 13px;
     display: flex;
     align-items: center;
     p {
@@ -47,16 +62,16 @@
   // ---------------- SLIDER ----------------
   #drag-handle {
     width: 100%;
-    height: 70px;
+    height: 60px;
     z-index: 1000;
     cursor: move;
     align-self: center;
     padding: 10px 0;
     background: $black;
-    //box-shadow: 0 0 rbga(0, 0, 0, 0.5);
+    box-shadow: 0 0 rbga(0, 0, 0, 0.5);
     display: table;
     p {
-      font-size: 1.2em;
+      font-size: 1em;
       margin-bottom: 0;
       display: table-cell;
       vertical-align: middle;
@@ -71,7 +86,7 @@
     background: -ms-linear-gradient(90deg, rgba(18, 47, 61, 1) 0%, rgba(17, 103, 103, 1) 40%, rgba(17, 103, 103, 1) 60%, rgba(18, 47, 61, 1) 100%); /* ie10+ */
     background: linear-gradient(0deg, rgba(18, 47, 61, 1) 0%, rgba(17, 103, 103, 1) 40%, rgba(17, 103, 103, 1) 60%, rgba(18, 47, 61, 1) 100%); /* w3c */
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=‘ #122f3d ’, endColorstr=‘ #122f3d ’, GradientType=0); /* ie6-9 */
-    height: 450px;
+    height: 400px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -87,6 +102,7 @@
     letter-spacing: 0.025em;
     text-transform: none;
     color: $white;
+    margin-bottom:0;
   }
 
   p {
@@ -114,9 +130,12 @@
   }
 
   .next {
-    opacity: 0.25;
+    opacity: 0.5;
+    color: $white;
+    font-size: 18px;
     :hover {
       opacity: 1;
+      color: $white;
     }
   }
   // ---------------- END TYPE ----------------
@@ -177,19 +196,35 @@
 
 // ---------------- END SURVEY CLASS ----------------
 
-@media (min-width: 350px) {
-  .three.columns {
-    width: 22%;
-  }
+// ---------------- Small mobile ----------------
+@media (max-width: 320px) {
+  .survey {
+    .question {
+      font-size: 1.8em;
+    }
+    #slider {
+      height: 350px;
+    }
+    #drag-handle{
+      p {
+        font-size: 0.85em;
+      }
+    }
+    p {
+      font-size: 0.85em;
+    }
+    #up-arrow {
+      margin: 8rem auto 2em;
+    }
+    #down-arrow {
+      margin: -8rem auto 0;
+    }
+    .option1 {
+      margin: 10.5rem auto;
+    }
 
-  .nine.columns {
-    width: 74%;
-  }
-
-  .column:first-child, .columns:first-child {
-    margin-left: 0;
-  }
-  .column, .columns {
-    margin-left: 4%;
+    .option2 {
+      margin: -10.5rem auto;
+    }
   }
 }

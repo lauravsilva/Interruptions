@@ -5,7 +5,7 @@
     <!-- Basic Page Needs
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Interruptions | Survey</title>
+    <title>Interruptions | Begin Survey</title>
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Mobile Specific Metas
@@ -40,57 +40,25 @@
 
 </head>
 
-<body id="survey-page">
-<div class="survey">
+<body id="begin-page">
+<div class="begin">
 
     <div class="container">
-        <div class="user-info">
-                <span class="icon" id="user"><img src="assets/images/account.png" alt="User Icon"/></span>
-                <p id="userkey"> {{ userKey|e }}</p>
-        </div>
+        <p class="int-title">Interruptions</p>
 
-        <h1 class="question">{{ questionData[0] }}</h1>
+        <p class="welcome-header">Welcome to Interruptions!</p>
+        <p class="description">Interruptions is an interactive walkthrough that allows two strangers to create art through conversation. This survey allows us to collect a broad set of data that reflects your individuality.</p>
 
-        <div class="progression-section row">
-            <div class="nine columns">
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{{ percentProgress }}%">
-                    </div>
-                </div>
-            </div>
-            <div class="three columns next">
-                <p id="next-text"><a id="next-btn" onclick="nextButton()">Next</a><span class="icon"><img src="assets/images/next_arrow.png" alt="Right Arrow" id="right-arrow"/></span></p>
-            </div>
-        </div>
-    </div>
-
-    <div id="drag-container">
-        <div class="slider-label">
-            <img src="assets/images/up_arrow.png" alt="Up Arrow" id="up-arrow"/>
-            <p class="option1">{{ questionData[1][0] }}</p>
-        </div>
-        <div id="slider">
-            <div id="drag-handle">
-                <p><span id="final_result">Drag to answer</span></p></div>
-        </div>
-        <div class="slider-label">
-            <img src="assets/images/down_arrow.png" alt="Up Arrow"id="down-arrow"/>
-            <p class="option2">{{ questionData[1][4] }}</p>
+        <div class="submitnewuser-container">
+            <form action="survey.php">
+                <button class="beginSurvey-btn" type="submit">Begin Survey</button>
+            </form>
+                <!--<span><img src="assets/images/next_arrow.png" alt="Next Arrow"></span>-->
         </div>
     </div>
 
 </div>
 
-<div id="dom-target" style="display: none;">
-    <span id="op0">{{ questionData[1][0] }}</span>
-    <span id="op1">{{ questionData[1][1] }}</span>
-    <span id="op2">{{ questionData[1][2] }}</span>
-    <span id="op3">{{ questionData[1][3] }}</span>
-    <span id="op4">{{ questionData[1][4] }}</span>
-</div>
-
-
-<script type="text/javascript" src="assets/js/survey_main.js"></script>
 </body>
 
 </html>
