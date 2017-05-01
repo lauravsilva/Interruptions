@@ -51,27 +51,27 @@ $("#drag-handle").draggable({
 
         var offset = $(this).offset();
         var containerTop = offset.top;
-        resValue = Math.round((containerTop - minY - halfHandleHeight) / tickSize);
-
+        resValue = Math.round((containerTop - minY + halfHandleHeight) / tickSize);
 
         sliderDiv.slider("value", resValue);
 
         //TODO: adjust these numbers to make more sense
-        if (resValue === 50) {
-            result = option3;
-        }
-        else if (resValue > 50 && resValue < 75) {
-            result = option4;
-        }
-        else if (resValue >= 75) {
-            result = option5;
-        }
-        else if (resValue < 50 && resValue > 25) {
-            result = option2;
-        }
-        else if (resValue < 50) {
+        if (resValue <= 30) {
             result = option1;
         }
+        else if (resValue >= 21 && resValue <= 50) {
+            result = option2;
+        }
+        else if (resValue >= 51 && resValue <= 60) {
+            result = option3;
+        }
+        else if (resValue >= 61 && resValue <= 80) {
+            result = option4;
+        }
+        else if (resValue >= 81 && resValue <= 100) {
+            result = option5;
+        }
+
         $("#final_result").text(result);
     }
 });
@@ -80,9 +80,9 @@ $("#drag-handle").draggable({
 sliderDiv.droppable({
     //on drop 
     drop: function (e, ui) {
-        $("#drag-handle").fadeTo(300, 1.0, function(){
-            $("#drag-handle").css("background", "#020b11");
-            // $("#drag-handle").css('opacity', '1.0');
+        $("#drag-handle").fadeIn(900, function(){
+            // $("#drag-handle").css("background", "#020b11");
+            $("#drag-handle").css('opacity', '1.0');
         });
         // $("#drag-handle").fadeTo(800, 1.0, function(){
         //     $(this).css("background", "#020b11");
@@ -99,20 +99,20 @@ sliderDiv.droppable({
 
         sliderDiv.slider("value", resValue);
 
-        if (resValue === 50) {
-            result = option3;
+        if (resValue <= 30) {
+            result = option1;
         }
-        else if (resValue > 50 && resValue < 75) {
-            result = option4;
-        }
-        else if (resValue >= 75) {
-            result = option5;
-        }
-        else if (resValue < 50 && resValue > 25) {
+        else if (resValue >= 21 && resValue <= 50) {
             result = option2;
         }
-        else if (resValue < 50) {
-            result = option1;
+        else if (resValue >= 51 && resValue <= 60) {
+            result = option3;
+        }
+        else if (resValue >= 61 && resValue <= 80) {
+            result = option4;
+        }
+        else if (resValue >= 81 && resValue <= 100) {
+            result = option5;
         }
         //update result on page
         console.log(result + ": " + resValue + "%");

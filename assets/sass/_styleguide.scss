@@ -84,7 +84,7 @@ button{
 }
 
 #survey-page, #thankyou-page, #begin-page {
-  max-width: 736px;
+  max-width: 534px;
   margin: 0 auto;
   color: $white;
 }
@@ -177,11 +177,6 @@ button{
   text-transform: capitalize !important;
   letter-spacing: 0 !important;
 }
-
-
-
-
-
 
 #partnerkey:-moz-placeholder { /* Firefox 18- */
   font-style: italic;
