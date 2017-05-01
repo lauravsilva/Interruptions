@@ -83,7 +83,7 @@ button{
   vertical-align: middle;
 }
 
-#survey-page, #thankyou-page {
+#survey-page, #thankyou-page, #begin-page {
   max-width: 736px;
   margin: 0 auto;
   color: $white;
@@ -170,6 +170,55 @@ button{
 }
 
 #key:placeholder-shown { /* Standard one last! */
+  font-style: italic;
+  font-size: 1em;
+  color: $light-gray;
+  padding-left: 20px;
+  text-transform: capitalize !important;
+  letter-spacing: 0 !important;
+}
+
+
+
+
+
+
+#partnerkey:-moz-placeholder { /* Firefox 18- */
+  font-style: italic;
+  font-size: 1em;
+  color: $light-gray;
+  padding-left: 20px;
+  text-transform: capitalize;
+}
+
+#partnerkey::-moz-placeholder { /* Firefox 19+ */
+  font-style: italic;
+  font-size: 1em;
+  color: $light-gray;
+  padding-left: 20px;
+  text-transform: capitalize !important;
+  letter-spacing: 0 !important;
+}
+
+#partnerkey:-ms-input-placeholder { /* IE 10+ */
+  font-style: italic;
+  font-size: 1em;
+  color: $light-gray;
+  padding-left: 20px;
+  text-transform: capitalize !important;
+  letter-spacing: 0 !important;
+}
+
+#partnerkey::-ms-input-placeholder { /* Edge */
+  font-style: italic;
+  font-size: 1em;
+  color: $light-gray;
+  padding-left: 20px;
+  text-transform: capitalize !important;
+  letter-spacing: 0 !important;
+}
+
+#partnerkey:placeholder-shown { /* Standard one last! */
   font-style: italic;
   font-size: 1em;
   color: $light-gray;

@@ -164,17 +164,16 @@ class DB
     }
 
     // Update row with userKey to add name, color, email (isolation data)
-    function addIsolationData($userKey, $userName, $age, $email, $color)
+    function addIsolationData($userKey, $partnerkey, $userName, $age, $email, $color)
     {
-        echo 'addisolation data';
         $timestamp = date("Y-m-d H:i:s");
-        echo $timestamp;
 
         try {
-            $stmt = $this->dbh->prepare("UPDATE user SET userName = :userName, userColor = :color, userEmail = :userEmail, userAge = :userAge, timeStamp = :timestamp WHERE userKey = :userKey");
+            $stmt = $this->dbh->prepare("UPDATE user SET userName = :userName, partnerkey = :partnerkey, userColor = :color, userEmail = :userEmail, userAge = :userAge, timeStamp = :timestamp WHERE userKey = :userKey");
             $stmt->execute(array(
                 "userKey" => $userKey,
                 "userName" => $userName,
+                "partnerkey" => $partnerkey,
                 "color" => $color,
                 "userEmail" => $email,
                 "userAge" => $age,

@@ -3,32 +3,26 @@ require_once "isolation.php";
 require_once "assets/classes/DB.class.php";
 require_once "assets/classes/util.php";
 
-//// Start the session
-//session_start();
-
-//  $data = $db->getUserColors();
-////  $data = $db->getAllQuestionOptions();
-//  foreach($data as $row){
-//    print_r($row);
-//  }
-//
-//  $question = $db->getQuestion(1);
-//    print_r($question);
-//
-//
-//  $partner = $db->getPartnerData('ABC123');
-//print_r($partner);
+// convert posted keys to uppercase to match db entries
+$postkey = strtoupper($_POST['key']);
+$postpartnerkey = strtoupper($_POST['partnerkey']);
 
 $key = '';
+$partnerkey = '';
 $name = '';
 $age = '';
 $email = '';
 $color = '';
 
+
 // TODO: if key doesn't exist, show error message
 //try {
-    if (isset($_POST['key']) and validateUserKey($_POST['key']) === 1) {
-        $key = $_POST['key'];
+    if (isset($_POST['key']) and validateUserKey($postkey) === 1) {
+        $key = $postkey;
+    }
+
+    if (isset($_POST['partnerkey']) and validateUserKey($postpartnerkey) === 1) {
+        $partnerkey = $postpartnerkey;
     }
 //}
 //catch(Exception $e){
@@ -50,12 +44,11 @@ if (isset($_POST['color'])){
 }
 
 
-updateDB($key, $name, $age, $email, $color);
+updateDB($key, $partnerkey, $name, $age, $email, $color);
 
 
-function updateDB($key, $name, $age, $email, $color){
+function updateDB($key, $partnerkey, $name, $age, $email, $color){
     $db = new DB();
 
-    $db->addIsolationData($key, $name, $age, $email, $color);
-
+    $db->addIsolationData($key, $partnerkey, $name, $age, $email, $color);
 }

@@ -117,21 +117,7 @@ sliderDiv.droppable({
         //update result on page
         console.log(result + ": " + resValue + "%");
 
-
-
-        //do ajax update here to set the position
-        /*$.ajax({
-         type: "POST",
-         url: url,
-         data: resValue,
-         success: function () {
-         //congrats
-         },
-         dataType: dataType
-         });*/
-        //        }
         $("#final_result").text(result);
-        // $("#result").text(" ");
     }
 });
 

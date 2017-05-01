@@ -1,5 +1,7 @@
 <?php
 
+$globalvar = "i'm a global!";
+
 // Source: http://stackoverflow.com/questions/1846202/php-how-to-generate-a-random-unique-alphanumeric-string
 function crypto_rand_secure($min, $max){
     $range = $max - $min;
@@ -73,7 +75,7 @@ function setSession(){
     }
 
     // Make sure the generated key doesn't already exist in db
-    while(in_array($generateKey, $data)){
+    while(in_array($generateKey, $data, true)){
         $generateKey = getToken();
     }
 

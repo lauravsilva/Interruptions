@@ -130,7 +130,6 @@
   }
 
   .next {
-    opacity: 0.5;
     color: $white;
     font-size: 18px;
     :hover {
@@ -186,6 +185,7 @@
   }
 
   #next-text {
+    opacity: 0.5;
     text-align: center;
     display: table;
   }

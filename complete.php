@@ -3,7 +3,7 @@ require_once 'vendor/autoload.php';
 require_once "assets/classes/DB.class.php";
 require_once "assets/classes/util.php";
 
-//$db = new DB();
+$db = new DB();
 
 
 try {
@@ -13,26 +13,14 @@ try {
     $twig = new Twig_Environment($loader);
 
     // load template
-    $template = $twig->loadTemplate('begin.html');
-
-    echo ($globalvar);
+    $template = $twig->loadTemplate('complete.html');
 
     // set template variables and render template
-//    if (!isset($_SESSION['userKey'])) {
-//        setSession();
-//    }
-
-//    if ($_SESSION["currentQ"] === NUMQS+1 ){
-//        redirect("thankyou.php");
-//        return;
-//    }
-
     echo $template->render(array(
-
-//        'totalQuestionNum' => NUMQS
+//        'test' => 'test'
     ));
+
 } catch (Exception $e) {
     die('ERROR: ' . $e->getMessage());
 }
-
 

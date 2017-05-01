@@ -23,7 +23,7 @@ function submitButton() {
             function (data) {
                 // alert(data);
             }).done(function () {
-            window.location.replace('/templates/complete.html');
+            window.location.replace('complete.php');
         }).fail(function () {
             alert("ERROR");
         });
