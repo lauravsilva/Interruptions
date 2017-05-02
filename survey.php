@@ -3,16 +3,13 @@ require_once 'vendor/autoload.php';
 require_once "assets/classes/DB.class.php";
 require_once "assets/classes/util.php";
 
-$db = new DB();
-
-// TODO: Adjust numquestions
-define("NUMQS", "24");
-$allQuestionsData = [];
-
 // Start the session
 session_start();
 
-//TODO: Only execute this code once
+$db = new DB();
+define("NUMQS", "24");
+$allQuestionsData = [];
+
 for ($i = 1; $i <= NUMQS; $i++) {
     $question = $db->getQuestion($i);
     $parsedQ = parseQuestion($question);
@@ -22,6 +19,7 @@ for ($i = 1; $i <= NUMQS; $i++) {
     $thisQData = (array($parsedQ, $parsedO));
     array_push($allQuestionsData, $thisQData);
 }
+
 
 try {
     // specify where to look for templates

@@ -81,6 +81,18 @@ button{
   display: table-cell;
   text-align: center;
   vertical-align: middle;
+  line-height: 0;
+}
+
+.icon-text{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.icon-wrapper{
+  text-align: center;
+  display: table;
 }
 
 #survey-page, #thankyou-page, #begin-page {

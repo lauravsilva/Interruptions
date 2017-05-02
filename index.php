@@ -3,9 +3,6 @@ require_once 'vendor/autoload.php';
 require_once "assets/classes/DB.class.php";
 require_once "assets/classes/util.php";
 
-//$db = new DB();
-
-
 try {
     // specify where to look for templates
     $loader = new Twig_Loader_Filesystem('templates');
@@ -15,20 +12,11 @@ try {
     // load template
     $template = $twig->loadTemplate('begin.html');
 
-    echo ($globalvar);
-
-    // set template variables and render template
-//    if (!isset($_SESSION['userKey'])) {
-//        setSession();
-//    }
-
-//    if ($_SESSION["currentQ"] === NUMQS+1 ){
-//        redirect("thankyou.php");
-//        return;
-//    }
+    if (isset($_SESSION['userKey'])) {
+        session_destroy();
+    }
 
     echo $template->render(array(
-
 //        'totalQuestionNum' => NUMQS
     ));
 } catch (Exception $e) {
