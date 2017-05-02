@@ -1,5 +1,6 @@
 <?php
-  require "assets/inc/page_start.inc.php";
+require_once "assets/classes/DB.class.php";
+$db = new DB();
 ?>
 
 <html>
@@ -61,49 +62,82 @@
     </style>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-    google.charts.load('current', {'packages':['scatter']});
-     google.charts.setOnLoadCallback(drawChart);
+        function getRandomColor() {
+        var letters = '012345689ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++ ) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+      google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
 
-     function drawChart () {
+        function drawChart () {
+          //var rand = Math.floor((Math.random() * 50) + 1);
+        //var data = new google.visualization.DataTable();
+         //   foreach (point in db){
+         //   var data += [Math.floor((Math.random() * 50) + 1), [parsedTime], 'point {fill-color:'+pointColor+'}']
+         // }
 
-       var data = new google.visualization.DataTable();
-       data.addColumn('number', 'Random');
-       data.addColumn('timeofday', 'Time of Day');
+          var data = google.visualization.arrayToDataTable
+            ([['X', 'Y', {'type': 'string', 'role': 'style'}],
+              [Math.floor((Math.random() * 50) + 1), [10, 01, 0], 'point { fill-color: '+getRandomColor()+'; }'],
+              [Math.floor((Math.random() * 50) + 1), [11, 30, 0], 'point { fill-color: '+getRandomColor()+'; }'],
+              [Math.floor((Math.random() * 50) + 1), [16, 59, 0], 'point { fill-color: '+getRandomColor()+'; }'],
+              [Math.floor((Math.random() * 50) + 1), [13, 23, 0], 'point { fill-color: '+getRandomColor()+'; }'],
+              [Math.floor((Math.random() * 50) + 1), [14, 45, 0], 'point { fill-color: '+getRandomColor()+'; }'],
+              [Math.floor((Math.random() * 50) + 1), [15, 40, 0], 'point { fill-color: '+getRandomColor()+'; }'],
+              [Math.floor((Math.random() * 50) + 1), [16, 34, 0], 'point { fill-color: '+getRandomColor()+'; }'],
+              [Math.floor((Math.random() * 50) + 1), [12, 12, 0], 'point { fill-color: '+getRandomColor()+'; }']
+        ]);
+          // data.addColumn('number', 'Random');
+          // data.addColumn('timeofday', 'Time of Day');
+          // // data.addColumn( {'type': 'string', 'role': 'style'} );
+          // // data.addColumn('number', 'X-axis');
+          // // data.addColumn('number', 'A data');
+          // // data.addColumn({'type': 'string', 'role': 'style'});
+          // // data.addColumn('number', 'B data');
+          // // data.addColumn({'type': 'string', 'role': 'style'});
+          // //data.addColumn( {'type': 'string', 'role': 'style'} );
+          // //time: [hh, mm, ss]
+          // data.addRows([
+          //   [10, [10, 01, 0]],
+          //   [30, [11, 30, 0]],
+          //   [Math.floor((Math.random() * 50) + 1), [16, 59, 0]],
+          //   [Math.floor((Math.random() * 50) + 1), [13, 23, 0]],
+          //   [Math.floor((Math.random() * 50) + 1), [14, 45, 0]],
+          //   [Math.floor((Math.random() * 50) + 1), [15, 40, 0]],
+          //   [Math.floor((Math.random() * 50) + 1), [16, 34, 0]],
+          //   [Math.floor((Math.random() * 50) + 1), [12, 12, 0]]
+          // ]);
 
-       data.addRows([
-        [Math.floor(Math.random() * 50) + 1  , [8, 30, 45]],
-        [Math.floor(Math.random() * 50) + 1  , [9, 0, 0]],
-        [Math.floor(Math.random() * 50) + 1  , [10, 0, 0, 0]],
-        [Math.floor(Math.random() * 50) + 1  , [10, 45, 0, 0]],
-        [Math.floor(Math.random() * 50) + 1  , [11, 0, 0, 0]],
-        [Math.floor(Math.random() * 50) + 1  , [12, 15, 45, 0]],
-        [Math.floor(Math.random() * 50) + 1  , [13, 0, 0, 0]],
-        [Math.floor(Math.random() * 50) + 1  , [14, 30, 0, 0]],
-        [Math.floor(Math.random() * 50) + 1  , [15, 12, 0, 0]],
-        [Math.floor(Math.random() * 50) + 1  , [16, 45, 0]],
-        [Math.floor(Math.random() * 50) + 1  , [16, 59, 0]]
-      ]);
 
-       var options = {
-         chartArea: {
-           left: 0,
-           height: 900,
-           width: 1100
-    },
-         width: 1200,
-         height: 1000,
-         chart: {
-           title: '',
-           subtitle: ''
-         },
-         hAxis: {title: ''},
-         vAxis: {title: 'Time'}
-       };
+          var options = {
+            legend: {position: 'none'},
+            width: 800,
+            height: 500,
+            chart: {
+              title: 'Gallery'
+            },
+            hAxis: {title: '',
+                    minValue: 0,
+                    maxValue: 49,
+                    gridlines: {
+                      count: 0,
+                      color: 'transparent'
+                    },
+                    baselineColor: 'transparent'
+                  }, //Random
+            vAxis: {title: '', format:"hh", direction: -1, gridlines: {
+                color: 'transparent',
+                baselineColor: 'transparent'}}//Time
+          };
 
-       var chart = new google.charts.Scatter(document.getElementById('scatterchart_material'));
+          var chart = new google.visualization.ScatterChart(document.getElementById('chart_div'));
 
-       chart.draw(data, google.charts.Scatter.convertOptions(options));
-     }
+        chart.draw(data, options);
+        }
     </script>
 </head>
 
@@ -115,7 +149,7 @@
       <li><a href="#">Blog</a></li>
     </ul>
   </nav>
-  <div id="scatterchart_material"></div>
+  <div id="chart_div" style="width: 900px; height: 500px;"></div>
 
 </body>
 </html>
