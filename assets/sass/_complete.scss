@@ -1,0 +1,49 @@
+#complete-page{
+  background-image:url('../images/iso_bg.jpg');
+  background-size: 100% 100%;
+}
+
+.complete {
+  .container {
+    width: 50%;
+    text-align: center;
+  }
+  h1 {
+    margin: 100px auto 230px;
+  }
+  h2 {
+    font-weight: 500;
+    font-size: 2.7em;
+    color: $white;
+    opacity: 1.0;
+    letter-spacing: 0.025em;
+    margin: 60px auto 0;
+    text-align: center;
+  }
+  h3 {
+    font-weight: 500;
+    font-size: 2em;
+    color: $white;
+    opacity: 0.8;
+    letter-spacing: 0.025em;
+    margin: 30px auto 0;
+    text-align: center;
+    line-height: 1.5em;
+  }
+
+  button {
+    width: 30%;
+    height: 55px;
+    border: 0;
+    &:hover{
+      background: none;
+      border: 0;
+      color: $light-gray;
+    }
+  }
+
+  .newisolation-container {
+    text-align: center;
+    margin-top: 360px;
+  }
+}
