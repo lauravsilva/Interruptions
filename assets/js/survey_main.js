@@ -10,6 +10,17 @@ var halfHandleHeight = 60;
 
 $(document).ready(function(){
     // $("#up-arrow").effect("bounce", "slow");
+
+    var headerHeight = $("#header").height();
+    console.log("header: " + headerHeight);
+
+    var heightToSet = $(window).height() - headerHeight;
+    console.log("$(window).height() " + $(window).height());
+    console.log("heightToSet " + heightToSet);
+
+    $("#slider").css("height",heightToSet + "px");
+
+
 });
 
 
@@ -40,9 +51,9 @@ $("#drag-handle").draggable({
     axis: "y"
     , drag: function (e, ui) {
 
-        $("#drag-handle").fadeTo(300, 0.7, function(){
-            $("#drag-handle").css("background", "#020b11");
-        });
+        $("#drag-handle").css("background", "#020b11");
+        $("#drag-handle").css("opacity", "0.7");
+
         if ($(".slider-label").length) {
             $(".slider-label").fadeOut("800", function(){
                 $(".slider-label").css('visibility', 'hidden');
@@ -80,10 +91,10 @@ $("#drag-handle").draggable({
 sliderDiv.droppable({
     //on drop 
     drop: function (e, ui) {
-        $("#drag-handle").fadeIn(900, function(){
+        // $("#drag-handle").fadeIn(900, function(){
             // $("#drag-handle").css("background", "#020b11");
             $("#drag-handle").css('opacity', '1.0');
-        });
+        // });
         // $("#drag-handle").fadeTo(800, 1.0, function(){
         //     $(this).css("background", "#020b11");
         //     $(this).css('opacity', '1.0');
@@ -121,32 +132,6 @@ sliderDiv.droppable({
     }
 });
 
-
-// click of next button
-// $('#next-btn').click(function () {
-//     console.log("clicked");
-//
-//     // $.ajax({
-//     //     type: "POST",
-//     //     url: "survey_nextbtn.php",
-//     //     data: { questionRes: resValue },
-//     //     error: function () {
-//     //         alert('error');
-//     //     }
-//     // }).done(function( msg ) {
-//     //     alert( "Data Saved");
-//     // });
-//
-//     //noinspection JSAnnotator
-//     $.post('survey_nextbtn.php', {
-//         resValue
-//     }).done(function (data) {
-//         // console.log("data: " + data);
-//     }).fail(function (xhr, textStatus, errorThrown) {
-//         console.log(xhr.responseText + "    error: " + errorThrown + "   text: " + textStatus);
-//     });
-
-// });
 
 function nextButton(){
     $.ajax({

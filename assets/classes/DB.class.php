@@ -149,7 +149,7 @@ class DB
     {
         try {
             $data = array();
-            $stmt = $this->dbh->prepare("SELECT * from user WHERE userKey = :partnerKey");
+            $stmt = $this->dbh->prepare("SELECT userName, userColor, partnerKey from user WHERE userKey = :partnerKey");
             $stmt->execute(array(
                 'partnerKey' => $partnerKey
             ));
@@ -166,7 +166,7 @@ class DB
     // Update row with userKey to add name, color, email (isolation data)
     function addIsolationData($userKey, $partnerkey, $userName, $age, $email, $color)
     {
-        $timestamp = date("Y-m-d H:i:s");
+        $timestamp = date("H:i:s");
 
         try {
             $stmt = $this->dbh->prepare("UPDATE user SET userName = :userName, partnerkey = :partnerkey, userColor = :color, userEmail = :userEmail, userAge = :userAge, timeStamp = :timestamp WHERE userKey = :userKey");

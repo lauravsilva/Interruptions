@@ -3,9 +3,22 @@ require_once 'vendor/autoload.php';
 require_once "assets/classes/DB.class.php";
 require_once "assets/classes/util.php";
 
+// Start the session
+session_start();
+
 $db = new DB();
 
+$errorMessage = 'no error messsage';
 
+$reasons = array(
+    "userKey" => "The user code entered could not be found. Please try again.",
+    "partnerKey" => "The partner code entered could not be found. Please try again.",
+    "color" => "Please select a color."
+);
+
+if (isset($_SESSION['errors'])) {
+    $errorMessage = $reasons[$_SESSION['errors']];
+}
 
 
 try {
@@ -19,8 +32,10 @@ try {
 
     // set template variables and render template
     echo $template->render(array(
-        'test' => 'test'
+        'error' => $errorMessage
     ));
+
+    session_destroy();
 
 } catch (Exception $e) {
     die('ERROR: ' . $e->getMessage());

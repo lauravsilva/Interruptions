@@ -35,8 +35,7 @@ function getToken()
 
 
 // Parse question data
-function parseQuestion($question)
-{
+function parseQuestion($question){
     $data = '';
     foreach ($question as $key => $val) {
         foreach ($val as $key2 => $val2) {
@@ -48,8 +47,7 @@ function parseQuestion($question)
     return $data;
 }
 
-function parseOptions($options)
-{
+function parseOptions($options){
     $data = [];
     foreach ($options as $opKey => $opVal) {
         foreach ($opVal as $opKey2 => $opVal2) {
@@ -60,6 +58,21 @@ function parseOptions($options)
     }
     return $data;
 }
+
+
+// Parse question data
+function parsePartnerName($partnerData, $nameofcolumn){
+    $value = '';
+    foreach ($partnerData as $key => $val) {
+        foreach ($val as $key2 => $val2) {
+            if ($key2 === $nameofcolumn) {
+                $value = $val2;
+            }
+        }
+    }
+    return $value;
+}
+
 
 function setSession()
 {

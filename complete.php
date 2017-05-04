@@ -5,6 +5,14 @@ require_once "assets/classes/util.php";
 
 $db = new DB();
 
+// Start the session
+session_start();
+
+if (isset($_SESSION['errors'])){
+    redirect("isolation.php");
+    return;
+}
+
 
 try {
     // specify where to look for templates

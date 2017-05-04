@@ -21,26 +21,13 @@ function submitButton() {
             'isolation_submit.php',
             formData,
             function (data) {
+                console.log(formData);
                 // alert(data);
             }).done(function () {
-            window.location.replace('complete.php');
+                console.log("done");
+                window.location.replace('complete.php');
         }).fail(function () {
-            alert("ERROR");
+            alert("Error submitting data");
         });
     });
 }
-
-// function submitButton() {
-//     $("#completeUserBtn").click(function () {
-//         $.post(
-//             'isolation_submit.php',
-//             $("#completeUserForm").serialize(),
-//             function (data) {
-//                 // alert(data);
-//             }).done(function () {
-//             window.location.replace('/templates/complete.html');
-//         }).fail(function () {
-//             alert("ERROR");
-//         });
-//     });
-// }
