@@ -73,6 +73,18 @@ function parsePartnerName($partnerData, $nameofcolumn){
     return $value;
 }
 
+function parseActiveUserKeys($activeUsersKeys){
+    $data = [];
+    foreach ($activeUsersKeys as $opKey => $opVal) {
+        foreach ($opVal as $opKey2 => $opVal2) {
+            if ($opKey2 === 'userKey') {
+                array_push($data, $opVal2);
+            }
+        }
+    }
+    return $data;
+}
+
 
 function setSession()
 {

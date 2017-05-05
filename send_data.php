@@ -5,14 +5,33 @@
     $db = new DB();
 
 
-    $bar = $db->updateAllOtherUsersInactive();
+//    $bar = $db->updateAllOtherUsersInactive();
+//
+//    $foo = $db->updateActiveUserState('MKII0');
+//    $foo = $db->updateActiveUserState('3L5PR');
+//
+//    $keys = $db->getActiveUsersKeys();
+//
+//    print_r($foo);
+//    print_r($bar);
+//    print_r(sizeof($keys));
 
-    $foo = $db->updateActiveUserState('MKII0');
-    $foo = $db->updateActiveUserState('3L5PR');
 
-    $keys = $db->getActiveUsersKeys();
+// Get access to button pressed and button order:
+$buttonPressed = '16';
+$buttonOrder = '1';
 
-    print_r($foo);
-    print_r($bar);
-    print_r(sizeof($keys));
+
+$activeUsersKeys = $db->getActiveUsersKeys();
+$parsedUserKeys = parseActiveUserKeys($activeUsersKeys);
+
+echo 'Active Users Keys <br/>';
+print_r($activeUsersKeys);
+echo '<br/>Parsed User Keys <br/>';
+print_r($parsedUserKeys);
+
+
+$db->updateButtonQuestion($parsedUserKeys[0], $buttonPressed, $buttonOrder);
+$db->updateButtonQuestion($parsedUserKeys[1], $buttonPressed, $buttonOrder);
+
 

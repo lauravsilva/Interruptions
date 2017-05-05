@@ -239,6 +239,70 @@ class DB
         }
     }
 
+//    function getQuestionResponses($userKey){
+//        try {
+//            $data = array();
+//            $stmt = $this->dbh->prepare("SELECT qRes1, qRes2, qRes3, qRes4, qRes5, qRes6, qRes7, qRes8, qRes9, qRes10, qRes11, qRes12, qRes13, qRes14, qRes15, qRes16, qRes17, qRes18,qRes19, qRes20, qRes21, qRes22, qRes23, qRes24, button1, button2, button3, userColor, timeStamp from user WHERE userKey = :userKey");
+//            $stmt->execute(array(
+//                'userKey' => $userKey
+//            ));
+//            while ($row = $stmt->fetch()) {
+//                $data[] = $row;
+//            }
+//            return $data;
+//        } catch (PDOException $e) {
+//            echo $e->getMessage();
+//            die();
+//        }
+//    }
+
+    function getQuestionResponses($userKey){
+        try {
+            $data = array();
+            $stmt = $this->dbh->prepare("SELECT " .
+                "qRes1," .
+                "qRes2," .
+                "qRes3," .
+                "qRes4," .
+                "qRes5," .
+                "qRes6," .
+                "qRes7," .
+                "qRes8," .
+                "qRes9," .
+                "qRes10," .
+                "qRes11," .
+                "qRes12," .
+                "qRes13," .
+                "qRes14," .
+                "qRes15," .
+                "qRes16," .
+                "qRes17," .
+                "qRes18," .
+                "qRes19," .
+                "qRes20," .
+                "qRes21," .
+                "qRes22," .
+                "qRes23," .
+                "qRes24," .
+                "button1," .
+                "button2," .
+                "button3," .
+                "userColor," .
+                "timeStamp" .
+                " from user WHERE userKey = :userKey");
+            $stmt->execute(array(
+                'userKey' => $userKey
+            ));
+            while ($row = $stmt->fetch()) {
+                $data[] = $row;
+            }
+            return $data;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
 
     // update active user based on userKey
     function updateActiveUserState($userKey) {
@@ -273,8 +337,7 @@ class DB
         }
     }
 
-
-    // Get active users
+    // Get active users, returns array of keys
     function getActiveUsersKeys()
     {
         try {
@@ -292,6 +355,8 @@ class DB
             die();
         }
     }
+
+
 
 
 }
