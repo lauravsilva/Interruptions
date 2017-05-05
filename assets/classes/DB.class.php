@@ -340,7 +340,7 @@ class DB
     }
 
 
-    // Get active users, returns array of keys
+    // Get name of the artpiece for user key
     function getArtPieceName($userKey){
         try {
             $data = array();
@@ -352,6 +352,24 @@ class DB
                 $data[] = $row;
             }
             return $data;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
+    // updates name of artpiece
+    function updateArtPieceName($userKey, $name) {
+        try {
+            $stmt = $this->dbh->prepare("UPDATE user SET artpieceName = :name WHERE userKey = :userKey");
+
+            $stmt->execute(array(
+                'userKey' => $userKey,
+                'name' => $name
+            ));
+
+            return $this->dbh->lastInsertId();
+
         } catch (PDOException $e) {
             echo $e->getMessage();
             die();
