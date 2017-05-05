@@ -238,4 +238,60 @@ class DB
             die();
         }
     }
+
+
+    // update active user based on userKey
+    function updateActiveUserState($userKey) {
+        try {
+            $stmt = $this->dbh->prepare("UPDATE user SET activeUser = 1 WHERE userKey = :userKey");
+            $stmt->execute(array(
+                'userKey' => $userKey
+            ));
+
+            return $this->dbh->lastInsertId();
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
+    // update users to inactive
+    function updateAllOtherUsersInactive() {
+        try {
+            $stmt = $this->dbh->prepare("UPDATE user SET activeUser = :isActive WHERE activeUser = :active");
+
+            $stmt->execute(array(
+                'isActive' => 0,
+                'active' => 1
+            ));
+
+            return $this->dbh->lastInsertId();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
+
+    // Get active users
+    function getActiveUsersKeys()
+    {
+        try {
+            $data = array();
+            $stmt = $this->dbh->prepare("SELECT userKey from user WHERE activeUser = :active");
+            $stmt->execute(array(
+                'active' => 1
+            ));
+            while ($row = $stmt->fetch()) {
+                $data[] = $row;
+            }
+            return $data;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
+
 }

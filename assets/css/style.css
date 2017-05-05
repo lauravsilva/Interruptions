@@ -272,7 +272,6 @@ button {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=‘ #122f3d ’, endColorstr=‘ #122f3d ’, GradientType=0);
   /* ie6-9 */
   height: 65vh;
-  width: 100vw;
   display: flex;
   justify-content: center; }
 .survey .question {

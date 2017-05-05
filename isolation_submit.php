@@ -58,6 +58,13 @@ function updateDB($key, $partnerkey, $name, $age, $email, $color){
 
     $db->addIsolationData($key, $partnerkey, $name, $age, $email, $color);
 
+    $activeUsersKeys = $db->getActiveUsersKeys();
+
+    if (sizeof($activeUsersKeys) >= 2){
+        // clear active users
+        $db->updateAllOtherUsersInactive();
+    }
+    $db->updateActiveUserState($key);
+
     session_destroy();
-//    redirect("complete.php");
 }
