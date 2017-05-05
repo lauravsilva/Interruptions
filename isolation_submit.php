@@ -1,5 +1,5 @@
 <?php
-require_once "isolation.php";
+//require_once "isolation.php";
 require_once "assets/classes/DB.class.php";
 require_once "assets/classes/util.php";
 
@@ -12,51 +12,64 @@ $postpartnerkey = strtoupper($_POST['partnerkey']);
 
 $key = '';
 $partnerkey = '';
-$name = '';
+$username = '';
 $age = '';
 $email = '';
 $color = '';
 
+// variable that keeps track of errors
+$formvalidation = '';
 
-// TODO: if key doesn't exist, show error message
+// form validation
+if (isset($_POST['color'])){
+    $color = $_POST['color'];
+}
+else {
+    $_SESSION['errors'] = "color";
+    $formvalidation = 'error';
+}
 
-if (isset($_POST['key']) and validateUserKey($postkey) === 1) {
-    $key = $postkey;
-} else {
-    $_SESSION['errors'] = "userKey";
-//    redirect("isolation.php");
-//    return;
+if (isset($_POST['name'])){
+    $username = $_POST['name'];
+}
+
+if (isset($_POST['age'])){
+    $age = $_POST['age'];
+}
+
+if (isset($_POST['email'])){
+    $email = $_POST['email'];
 }
 
 if (isset($_POST['partnerkey']) and validateUserKey($postpartnerkey) === 1) {
     $partnerkey = $postpartnerkey;
 } else {
     $_SESSION['errors'] = "partnerKey";
-//    redirect("isolation.php");
-//    return;
+    $formvalidation = 'error';
 }
 
-if (isset($_POST['name'])){
-    $name = $_POST['name'];
+if (isset($_POST['key']) and validateUserKey($postkey) === 1) {
+    $key = $postkey;
+} else {
+    $_SESSION['errors'] = "userKey";
+    $formvalidation = 'error';
 }
-if (isset($_POST['age'])){
-    $age = $_POST['age'];
-}
-if (isset($_POST['email'])){
-    $email = $_POST['email'];
-}
-if (isset($_POST['color'])){
-    $color = $_POST['color'];
-}
+// end form validation
 
 
-updateDB($key, $partnerkey, $name, $age, $email, $color);
+// update db is there are no form validation errors
+if ($formvalidation === ''){
+    updateDB($key, $partnerkey, $username, $age, $email, $color);
+}
+else {
+    echo $formvalidation;
+}
 
-
-function updateDB($key, $partnerkey, $name, $age, $email, $color){
+// functions
+function updateDB($key, $partnerkey, $username, $age, $email, $color){
     $db = new DB();
 
-    $db->addIsolationData($key, $partnerkey, $name, $age, $email, $color);
+    $db->addIsolationData($key, $partnerkey, $username, $age, $email, $color);
 
     $activeUsersKeys = $db->getActiveUsersKeys();
 

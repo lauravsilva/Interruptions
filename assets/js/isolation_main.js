@@ -7,7 +7,6 @@ var selectedColor = '';
         },
         selected: function(event, ui){
             selectedColor = $(ui.selected).data('color');
-            // console.log("color is: #" + selectedColor);
         }
     });
 
@@ -19,13 +18,17 @@ function submitButton() {
     $("#completeUserBtn").click(function () {
         $.post(
             'isolation_submit.php',
-            formData,
-            function (data) {
-                console.log(formData);
-                // alert(data);
-            }).done(function () {
-                console.log("done");
-                window.location.replace('complete.php');
+            formData)
+            .success(function(response){
+                console.log(response);
+                if (response == "error"){
+                    window.location.replace('isolation.php');
+                }
+                else {
+                    window.location.replace('complete.php');
+                }
+            }).done(function (data) {
+                // console.log("done");
         }).fail(function () {
             alert("Error submitting data");
         });

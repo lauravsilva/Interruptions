@@ -8,7 +8,7 @@ session_start();
 
 $db = new DB();
 
-$errorMessage = 'no error messsage';
+$errorMessage = '';
 
 $reasons = array(
     "userKey" => "The user code entered could not be found. Please try again.",
