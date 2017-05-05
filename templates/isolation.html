@@ -44,10 +44,6 @@
     <form id="completeUserForm" class="form-completeUser" role="form" onsubmit="submitButton(); return false;"
           method="post">
 
-        {% if error|e %}
-        <p class="error-message">{{ error }}</p>
-        {% endif %}
-
         <h2>Please enter the user codes you received after completing the survey:</h2>
         <div class="row">
             <div class="one-half column">
@@ -58,7 +54,12 @@
             </div>
         </div>
 
+        {% if error|e %}
+        <p class="error-message">{{ error }}</p>
+        {% endif %}
+
         <div class="divider"></div>
+
         <h2>Please enter the following information:</h2>
         <div class="row">
             <div class="two-thirds column">
