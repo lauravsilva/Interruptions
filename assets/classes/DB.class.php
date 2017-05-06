@@ -274,7 +274,7 @@ class DB
                 "userColor," .
                 "timeStamp," .
 				"userName," .
-				"userAge,"
+				"userAge" .
                 " from user WHERE userKey = :userKey");
             $stmt->execute(array(
                 'userKey' => $userKey
