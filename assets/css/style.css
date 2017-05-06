@@ -272,6 +272,7 @@ button {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=‘ #122f3d ’, endColorstr=‘ #122f3d ’, GradientType=0);
   /* ie6-9 */
   height: 65vh;
+  width: 100%;
   display: flex;
   justify-content: center; }
 .survey .question {
@@ -481,35 +482,33 @@ button {
   padding-left: 30px;
   text-transform: uppercase;
   letter-spacing: .2em; }
-.isolation .color-choices {
-  margin-bottom: 100px; }
-  .isolation .color-choices h2 {
-    margin-top: 50px; }
-  .isolation .color-choices .color-sq {
-    width: 85px;
-    height: 85px;
-    border-radius: 1.2px;
-    display: inline-block;
-    margin-right: 20px; }
-  .isolation .color-choices #sq-option-1 {
-    background: #e9233e; }
-  .isolation .color-choices #sq-option-2 {
-    background: #f56237; }
-  .isolation .color-choices #sq-option-3 {
-    background: #f3c347; }
-  .isolation .color-choices #sq-option-4 {
-    background: #2bd234; }
-  .isolation .color-choices #sq-option-5 {
-    background: #26c5c4; }
-  .isolation .color-choices #sq-option-6 {
-    background: #244f6a; }
-  .isolation .color-choices #sq-option-7 {
-    background: #603662; }
-  .isolation .color-choices #sq-option-8 {
-    background: #d42988; }
-  .isolation .color-choices #sq-option-9 {
-    background: #f76c6e;
-    margin-right: 0; }
+.isolation .color-choices h2 {
+  margin-top: 50px; }
+.isolation .color-choices .color-sq {
+  width: 85px;
+  height: 85px;
+  border-radius: 1.2px;
+  display: inline-block;
+  margin-right: 20px; }
+.isolation .color-choices #sq-option-1 {
+  background: #e9233e; }
+.isolation .color-choices #sq-option-2 {
+  background: #f56237; }
+.isolation .color-choices #sq-option-3 {
+  background: #f3c347; }
+.isolation .color-choices #sq-option-4 {
+  background: #2bd234; }
+.isolation .color-choices #sq-option-5 {
+  background: #26c5c4; }
+.isolation .color-choices #sq-option-6 {
+  background: #244f6a; }
+.isolation .color-choices #sq-option-7 {
+  background: #603662; }
+.isolation .color-choices #sq-option-8 {
+  background: #d42988; }
+.isolation .color-choices #sq-option-9 {
+  background: #f76c6e;
+  margin-right: 0; }
 .isolation #selectable {
   list-style-type: none;
   margin: 0;
@@ -526,10 +525,18 @@ button {
   width: 475px;
   height: 55px; }
 .isolation .submit-container {
+  margin-top: 100px;
   text-align: center; }
 .isolation .divider {
   margin-top: 80px;
   margin-bottom: 10px; }
+.isolation .error-message {
+  margin-top: 30px;
+  font-size: 1.5em;
+  font-style: italic;
+  background: #741727;
+  padding: 18px;
+  text-align: center; }
 
 #complete-page {
   background: -moz-linear-gradient(0deg, rgba(2, 11, 16, 0) 0%, #020b10 20%, #020b10 42%, #020b10 57%, #020b10 80%, rgba(2, 11, 16, 0) 100%), -moz-linear-gradient(0deg, #26c5c4 0%, #24526d 29%, #244f6a 30%, #244f6a 70%, #26c5c4 100%);

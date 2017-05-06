@@ -9,6 +9,8 @@ $purple: #603662;
 $pink: #d42988;
 $coral: #f76c6e;
 
+$error-red: #741727;
+
 .isolation {
   .container {
     width: 800px;
@@ -39,7 +41,6 @@ $coral: #f76c6e;
   }
 
   .color-choices {
-    margin-bottom: 100px;
     h2 {
       margin-top: 50px;
     }
@@ -102,6 +103,7 @@ $coral: #f76c6e;
   }
 
   .submit-container {
+    margin-top: 100px;
     text-align: center;
   }
   .divider {
@@ -110,6 +112,13 @@ $coral: #f76c6e;
   }
 
   .error-message{
-
+    margin-top: 30px;
+    font-size: 1.5em;
+    font-style: italic;
+    background: $error-red;
+    padding: 18px;
+    text-align: center;
   }
+
+
 }
