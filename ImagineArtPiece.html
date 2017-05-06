@@ -1,0 +1,408 @@
+<html>
+<head>
+<script src="https://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+
+<style type="text/css">
+
+#myCanvas{
+ }
+
+#myCanvas2{
+
+}
+</style>
+<script>
+'use strict';
+
+window.onload = init;
+
+
+function init(){
+
+var choiceArray = [];
+
+var imageObj = new Image();
+
+var imageObj2 =  new Image();
+
+	var numberQuestion = 7;
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	
+	//object data
+	var obj = [];
+	var obj2 = [];
+	var obj3 = [];
+	
+		 $.ajax({
+		url:"activeusers.php",
+		type:"get",
+		async:false,
+		success: function(data, status){
+			//alert("Data: " + data + "\nStatus: " + status);
+			obj3 = JSON.parse(data);
+			console.log(obj3[0][0]);
+			console.log(obj3[1][0]);
+		}
+	 });
+	//Hard coded for now
+	//Another function or something to pass in the User_keys
+	var user_key = obj3[0][0];
+	var user_key2 = obj3[1][0];
+
+	$.ajax({
+		url:"artpiece.php?user_key="+user_key,
+		type:"get",
+		async:false,
+		success: function(data, status){
+			//alert("Data: " + data + "\nStatus: " + status);
+			obj = JSON.parse(data)[0];
+			console.log(obj["timeStamp"]);
+		}
+	 });
+	 
+	 $.ajax({
+		url:"artpiece.php?user_key="+user_key2, 
+		type:"get",
+		async:false,
+		success: function(data, status){
+			//alert("Data: " + data + "\nStatus: " + status);
+			obj2 = JSON.parse(data)[0];
+		}
+     });
+	 
+	var color1 = "#"+obj["userColor"];
+	var color2 = "#"+obj2["userColor"];
+	
+	var name1 = obj["userName"];
+	var name2 = obj2["userName"];
+	
+	
+	var initial1 = name1.charAt(0).toUpperCase();
+	var initial2 = name2.charAt(0).toUpperCase();
+
+	var leftSrc = '';
+	var rightSrc = '';
+	
+	
+	isLetter(initial1);
+	isLetter(initial2);
+	
+	
+	console.log(initial1);
+	console.log(initial2);
+	leftSrc = 'assets/initials/' + 'left/' + initial1 + '.jpg';
+	rightSrc = 'assets/initials/' + 'right/' + initial2 + '.jpg';
+	
+	imageObj.src = leftSrc;
+	imageObj2.src = rightSrc;
+	
+	//timeStamp Parse
+	//var str = "How are you doing today?";
+	//var res = str.split(" ");
+	var parseTimeStamp = obj["timeStamp"].split(":");
+	
+	//left bar variables that are using ctx(1)
+	var rectX = canvas.width * .03125
+	var rectY = canvas.height * .05
+	var rectY2 = canvas.height * .95
+	var rectSize = 15;
+	var hour = parseInt(parseTimeStamp[0]);
+	var min = parseInt(parseTimeStamp[1]);
+	
+	var answer1 = [];
+	var answer2 = [];
+	
+	for(var i = 0; i < 24 ; i++){
+		answer1[i] = parseInt(obj["qRes" + (i+1)]);
+		answer2[i] = parseInt(obj2["qRes" + (i+1)]);
+	}
+
+    ctx.drawImage(imageObj, 0,0);
+	ctx.drawImage(imageObj2,705,0);
+	rightBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj);
+	leftBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj);
+	//try to send canvas data to a server
+	var dataURL = canvas.toDataURL("image/png");
+
+	 $.post("artscript.php",{'data':dataURL, 'userKey1':user_key, 'userKey2':user_key2}, function(data, status)	{
+
+	 })
+
+}
+
+function isLetter(initial) {
+
+	initial = initial.toUpperCase();
+	var alphabet = 'THE QUICK BROWN FOX JUMPS OVER THE LAZY DOG';
+	
+	if (alphabet.includes(initial) == false) {
+		initial = 'ZB';
+	}
+}
+
+function getDx(radius,deltaY){
+	return Math.sqrt((radius * radius) - (deltaY * deltaY));
+}
+
+function linear(input,low,high,min,max) {
+	
+	return min + (max-min)*(input-low) / (high-low);
+
+}
+
+function rightBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj){
+	var gridWidth = 680;
+	var boxSize =170;
+	var lilBoxSize = 90.1;
+	var timeDist;
+	var timeOffset = 200;
+	var butIterate = 1;
+	var amPM = "AM";
+
+	
+	//BUTTON WALL BELOW
+	for(var i = 0; i < 4;i++){
+		for(var j = 0; j < 4; j++){
+			// Drawing the rects in the center area of the screen 
+			ctx.strokeRect(388 + (170 *j),200 + (170 * i),boxSize,boxSize);
+			
+			//each big square gets a tiny 8x8 square in each of its corners
+			ctx.save();
+			ctx.translate(-4,-4);
+			ctx.strokeRect(388 + (170 *j),200 + (170 * i),8,8);
+			ctx.strokeRect(388 + (170 *j),370 + (170 * i),8,8);
+			ctx.strokeRect(558 + (170 *j),200 + (170 * i),8,8);
+			ctx.strokeRect(558 + (170 *j),370 + (170 * i),8,8);
+			ctx.restore();
+			
+			for(var k = 0; k < 5; k++){
+				for( var l = 0; l < 5; l++){
+				ctx.save();
+				ctx.strokeStyle = "white";
+				ctx.strokeRect(460 + (170 *j) + (k * 6),272 + (170 * i) + (l * 6),3,3);
+				ctx.restore();
+				}
+			}
+			//LilBox only 3 will appear
+
+			if( butIterate == obj['button1'] || butIterate == obj['button2'] || butIterate == obj['button3']){ 
+				ctx.save();
+				ctx.strokeStyle = "white";
+				ctx.strokeRect(388 + (170 *j) + (boxSize/4),200 + (170 * i) + (boxSize/4),lilBoxSize,lilBoxSize);
+				ctx.restore();
+				
+				//drawing the bigger square for selected button inputs
+				ctx.save();
+				ctx.globalAlpha = .2;
+				ctx.globalCompositeOperation = "screen";
+				ctx.fillStyle = "red";
+				ctx.fillRect(388 + (170 *j),200 + (170 * i),boxSize,boxSize);
+				ctx.restore();
+				
+				ctx.save();
+				ctx.beginPath();
+				ctx.fillStyle = "white";
+				ctx.arc(388 + (170 *j) + (boxSize/4) + lilBoxSize/2,200 + (170 * i) + (boxSize/4)+lilBoxSize,10,0,2*Math.PI);
+				ctx.fill();
+				ctx.stroke();
+				ctx.restore();
+				
+			}
+			butIterate++;			
+		}
+	}
+	//BUTTON WALL ABOVE
+
+	//TIME BELOW
+	timeDist = 880 - 200;
+	var chunk = timeDist / (19 - 9);
+	//19 is end time and 9 is start time military
+	
+	var yPos = ((hour - 9) * chunk) + ((min/60) * 60) + (200);
+	console.log(hour);
+	//hour
+	ctx.save();
+	ctx.fillStyle = color1;
+	ctx.fillRect(224,yPos,68,68);
+	ctx.restore();
+	
+	//min
+	ctx.save();
+	ctx.strokeStyle = color1;
+	ctx.strokeRect(224 + 82,yPos,68,68);
+	
+	ctx.restore();
+	//fix time min later
+	ctx.save();
+	ctx.textAlign="center"; 
+	ctx.textBaseline = "middle";
+	ctx.font = "30px Arial";
+	ctx.fillText(hour,224 + 34,yPos + 34);
+	if(hour >= 12){
+	amPM = "PM";
+	}
+	ctx.fillText(min,224 + 82 + 34,yPos + 34);
+	ctx.textAlign="left"; 
+	ctx.textBaseline = "bottom";
+	ctx.fillStyle = color1;
+	ctx.fillText(amPM,224,yPos + 68 + 44);
+	ctx.restore();
+	//TIME ABOVE
+	
+}
+
+function leftBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj){
+	//CALEB BELOW
+		
+	//declare variables
+	var	xStep = 32;
+	var yStep = 16;
+	var pushRight = 1318;
+	var pushDown = 240;
+	var barWidth = 560;
+	var barHeight = 16;
+	var railWeight = 2;
+	var xPos;
+	var yPos;
+	var squareCapX;
+	var circleCapX;
+
+	var minMeat = 6;
+	var maxMeat = 32;
+	
+var surveyPos = [ 
+		[1,0],
+
+		[0,3],
+		[1,4],
+		[0,5],
+
+		[1,8],
+		[2,9],
+		[3,10],
+		[5,11],
+
+		[2,14],
+		[1,15],
+		[2,16],
+		[3.5,17],
+
+		[3,19],
+		[4,20],
+		[4,21],
+		[3,22],
+
+		[1,25],
+		[2.5,26],
+		[2,27],
+		[4,28],
+
+		[1,31],
+		[1,32],
+		[2,33],
+
+		[1,37],
+      ];
+	  
+	  for(var q = 0; q < 24 ; q ++){
+	  xPos = surveyPos[q][0] * xStep + pushRight;
+	  yPos = surveyPos[q][1] * yStep + pushDown;
+	  
+	  //draw bg
+	  ctx.save();
+	  ctx.globalAlpha = 0.2;
+	  ctx.fillStyle = "#737373";
+	  ctx.translate(-barWidth/2,-barHeight/2);
+	  ctx.fillRect(xPos,yPos,barWidth,barHeight);
+	  ctx.restore();
+	  
+	  //draw rail
+	  ctx.save();
+	  ctx.translate(-barWidth/2,-railWeight/2);
+	  ctx.fillStyle = "#999999";
+	  ctx.fillRect(xPos,yPos,barWidth,railWeight);
+	  ctx.translate(barWidth/2,railWeight/2);	  
+	  ctx.translate(-3/2,-6/2);
+	  ctx.fillRect(xPos,yPos,3,6);
+	  ctx.restore();
+	  
+	  //giving the end caps values if its even or odd rect and arc 
+	  if(q % 2 == 0){
+		squareCapX = xPos - barWidth/2;
+		circleCapX = xPos + barWidth/2;
+	  }else{
+		squareCapX = xPos + barWidth/2;
+		circleCapX = xPos - barWidth/2;
+	  }
+	  
+	  ctx.save();
+	  ctx.translate(-16/2,-16/2);
+	  ctx.fillStyle = "#999999";
+	  ctx.fillRect(squareCapX,yPos,16,16);
+	  ctx.restore();
+	  
+	  ctx.save();
+	  ctx.beginPath();
+	  ctx.fillStyle = "#999999";
+	  ctx.arc(circleCapX,yPos,8,0,2 * Math.PI);
+	  ctx.fill();
+	  ctx.restore();
+	  
+	  //figure out the meat using x1 and x2 values
+	  var x1 = answer1[q];
+	  var x2 = answer2[q];
+	  
+	  if (x1 > x2) {
+		var temp = x1;
+		x1 = x2;
+		x2 = temp;
+	  }
+	  
+	  var meatLength = x2 - x1;
+	  var meatInverse = 99 - meatLength;
+	  
+	  var meatLengthPx = linear(meatLength,0,99,32,barWidth);
+	  var meatGirthPx = linear(meatInverse,0,99,minMeat,maxMeat);
+	  var meatPos = linear((x1 + x2)/2,0,99,0,barWidth) + xPos - barWidth/2 ;
+	  
+	  //draw the meat
+	  ctx.save();
+	  ctx.globalCompositeOperation = "screen";
+	  ctx.translate(-meatLengthPx/2,-meatGirthPx/2);
+	  ctx.fillStyle = "blue";
+	  ctx.fillRect(meatPos,yPos,meatLengthPx,meatGirthPx);
+	  ctx.restore();
+	  
+	  ctx.save();
+	  ctx.translate((-meatLengthPx + 8) /2,(-meatGirthPx + 8 )/2);
+	  ctx.lineWidth =2;
+	  ctx.strokeStyle = "#efefef";
+	  ctx.fillStyle = "blue";
+	  ctx.fillRect(meatPos,yPos,meatLengthPx-8,meatGirthPx-8);
+	  ctx.strokeRect(meatPos,yPos,meatLengthPx-8,meatGirthPx-8);	  
+	  ctx.restore();
+	  
+	  
+	  
+	  
+	  }
+}
+
+
+
+
+</script>
+</head>
+
+<body>
+
+
+
+<canvas id="myCanvas" width="1920" height="1080" style="border:1px dashed #000000;">
+Your browser does not support the HTML5 canvas tag.
+</canvas>
+
+
+</body>
+</html>
