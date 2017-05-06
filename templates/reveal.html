@@ -5,7 +5,7 @@
     <!-- Basic Page Needs
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <meta charset="utf-8">
-    <title>Interruptions</title>
+    <title>Interruptions | Reveal </title>
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Mobile Specific Metas
@@ -37,27 +37,16 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
 </head>
+<body>
+<div class="reveal">
+    <div class="container">
 
-<body id="complete-page" class="complete">
-<div class="container">
-    <h1>Interruptions</h1>
-
-        <img src="assets/images/check_large.png" alt="checkbox"/>
-
-        <h2>Your submission was successful!</h2>
-    <h3>Thank you! Please continue through the curtain to the next section</h3>
-
-
-    <div class="newisolation-container">
-        <form action="isolation.php">
-            <button class="nextUser-btn" type="submit"><span>Click here to start a new session </span>
-                <!--<span class="icon"><img src="assets/images/next_arrow.png" alt="Next Arrow"></span>-->
-            </button>
-        </form>
-        <!--<span><img src="assets/images/next_arrow.png" alt="Next Arrow"></span>-->
+    <button id="revealBtn" type="submit" name="revealBtn" onclick="revealArt();"><span>Reveal Your Art Piece</span>
+    </button>
     </div>
+
 </div>
+<script type="text/javascript" src="assets/js/reveal_main.js"></script>
 
 </body>
-
 </html>

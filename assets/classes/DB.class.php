@@ -204,14 +204,18 @@ class DB
 
     // update the button pressed based on userKey and questionNum
     //$buttonOrder should be '1', '2' or '3'
-    function updateButtonQuestion($userKey, $buttonPressed, $buttonOrder) {
-        $columnName = 'button' . $buttonOrder;
-
+    function updateButtonQuestion($userKey, $btnPressed1, $btnPressed2, $btnPressed3) {
         try {
-            $stmt = $this->dbh->prepare("UPDATE user SET $columnName = :button WHERE userKey = :userKey");
+            $stmt = $this->dbh->prepare("UPDATE user SET 
+              button1 = :btn1, 
+              button2 = :btn2,
+              button3 = :btn3
+            WHERE userKey = :userKey");
             $stmt->execute(array(
                 'userKey' => $userKey,
-                'button' => $buttonPressed
+                'btn1' => $btnPressed1,
+                'btn2' => $btnPressed2,
+                'btn3' => $btnPressed3,
             ));
             return $this->dbh->lastInsertId();
         } catch (PDOException $e) {
@@ -359,6 +363,25 @@ class DB
             die();
         }
     }
+
+    // update users to inactive
+    function updateArtPieceName($userKey, $piecename) {
+        try {
+            $stmt = $this->dbh->prepare("UPDATE user SET artpieceName = :artpiece WHERE userKey = :userKey");
+
+            $stmt->execute(array(
+                'userKey' => $userKey
+                , 'artpiece' => $piecename
+            ));
+
+            return $this->dbh->lastInsertId();
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
+    }
+
 
 
 }

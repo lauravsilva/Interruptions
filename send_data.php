@@ -18,20 +18,28 @@
 
 
 // Get access to button pressed and button order:
-$buttonPressed = '16';
-$buttonOrder = '1';
-
+//$buttonPressed = '16';
+//$buttonOrder = '1';
+//
+//
+//$activeUsersKeys = $db->getActiveUsersKeys();
+//$parsedUserKeys = parseActiveUserKeys($activeUsersKeys);
+//
+//echo 'Active Users Keys <br/>';
+//print_r($activeUsersKeys);
+//echo '<br/>Parsed User Keys <br/>';
+//print_r($parsedUserKeys);
+//
+//
+//$db->updateButtonQuestion($parsedUserKeys[0], $buttonPressed, $buttonOrder);
+//$db->updateButtonQuestion($parsedUserKeys[1], $buttonPressed, $buttonOrder);
+//
+//
 
 $activeUsersKeys = $db->getActiveUsersKeys();
 $parsedUserKeys = parseActiveUserKeys($activeUsersKeys);
 
-echo 'Active Users Keys <br/>';
-print_r($activeUsersKeys);
-echo '<br/>Parsed User Keys <br/>';
-print_r($parsedUserKeys);
+$piecename = $db->getArtPieceName($parsedUserKeys[0]);
+$parsedpiecename = parsePieceName($piecename);
 
-
-$db->updateButtonQuestion($parsedUserKeys[0], $buttonPressed, $buttonOrder);
-$db->updateButtonQuestion($parsedUserKeys[1], $buttonPressed, $buttonOrder);
-
-
+print_r($parsedpiecename);

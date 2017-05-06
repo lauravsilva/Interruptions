@@ -78,6 +78,19 @@ button {
   margin: 0 auto;
   color: #f7f6f6; }
 
+.reveal .container {
+  text-align: center;
+  margin: 250px auto; }
+.reveal button {
+  width: 80%;
+  height: 170px;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2em; }
+.reveal #my_artpiece {
+  width: 100%;
+  margin: 0 auto; }
+
 :-moz-placeholder {
   /* Firefox 18- */
   font-style: italic;
@@ -347,7 +360,7 @@ button {
   text-align: center;
   display: table; }
 
-@media (max-width: 320px) {
+@media (max-width: 360px) {
   .survey .question {
     font-size: 1.8em; }
   .survey #slider {
@@ -577,7 +590,6 @@ button {
   text-align: center;
   line-height: 1.5em; }
 .complete button {
-  width: 30%;
   height: 55px;
   border: 0; }
   .complete button:hover {

@@ -85,6 +85,18 @@ function parseActiveUserKeys($activeUsersKeys){
     return $data;
 }
 
+function parsePieceName($userKey){
+    $value = '';
+    foreach ($userKey as $opKey => $opVal) {
+        foreach ($opVal as $opKey2 => $opVal2) {
+            if ($opKey2 === 'artpieceName') {
+                $value = $opVal2;
+            }
+        }
+    }
+    return $value;
+}
+
 
 function setSession()
 {

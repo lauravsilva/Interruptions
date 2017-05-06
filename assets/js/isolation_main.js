@@ -12,13 +12,11 @@ var selectedColor = '';
 
 
 function submitButton() {
-    var formData = $("#completeUserForm").serialize();
-    formData += '&color='+selectedColor;
-
-    $("#completeUserBtn").click(function () {
+        // var formData = $("#completeUserForm").serialize();
+        // formData += '&color='+selectedColor;
         $.post(
             'isolation_submit.php',
-            formData)
+            $("#completeUserForm").serialize()+'&color='+selectedColor)
             .success(function(response){
                 console.log(response);
                 if (response == "error"){
@@ -32,5 +30,4 @@ function submitButton() {
         }).fail(function () {
             alert("Error submitting data");
         });
-    });
 }
