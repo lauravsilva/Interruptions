@@ -105,22 +105,52 @@ button{
 .reveal {
   .container {
     text-align: center;
-    margin: 250px auto;
+    margin: 190px auto;
+    max-width: 100%;
   }
   button{
     width: 80%;
-    height: 170px;
-    margin: 0 auto;
+    height: 330px;
+    margin: 300px auto 0;
     text-align: center;
-    font-size: 2em;
+    font-size: 4em;
   }
   #my_artpiece{
-    width: 100%;
+    width: 85%;
     margin: 0 auto;
+    border: 15px solid #dddddd;
+  }
+  #revealBtn{
+    background: $white;
+    border-color: $white;
+    color: $black;
+  }
+
+  #backrevealBtn{
+    background: none;
+    size: 10px;
+    color: $dark-gray;
+    font-size: 0.8em;
+    width: initial;
+    height: initial;
+    margin-top: 100px;
+    float: left;
+    border: none;
+    opacity: 0.5;
+  }
+
+  .revealed{
+    .container {
+      margin: 170px auto 0;
+    }
   }
 }
 
-
+@media (min-width: 550px){
+  .reveal .container {
+    width: 100%;
+  }
+}
 
 
 

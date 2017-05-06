@@ -80,17 +80,39 @@ button {
 
 .reveal .container {
   text-align: center;
-  margin: 250px auto; }
+  margin: 190px auto;
+  max-width: 100%; }
 .reveal button {
   width: 80%;
-  height: 170px;
-  margin: 0 auto;
+  height: 330px;
+  margin: 300px auto 0;
   text-align: center;
-  font-size: 2em; }
+  font-size: 4em; }
 .reveal #my_artpiece {
-  width: 100%;
-  margin: 0 auto; }
+  width: 85%;
+  margin: 0 auto;
+  border: 15px solid #dddddd; }
+.reveal #revealBtn {
+  background: #f7f6f6;
+  border-color: #f7f6f6;
+  color: #020b11; }
+.reveal #backrevealBtn {
+  background: none;
+  size: 10px;
+  color: #343034;
+  font-size: 0.8em;
+  width: initial;
+  height: initial;
+  margin-top: 100px;
+  float: left;
+  border: none;
+  opacity: 0.5; }
+.reveal .revealed .container {
+  margin: 170px auto 0; }
 
+@media (min-width: 550px) {
+  .reveal .container {
+    width: 100%; } }
 :-moz-placeholder {
   /* Firefox 18- */
   font-style: italic;

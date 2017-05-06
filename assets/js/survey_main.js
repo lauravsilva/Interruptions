@@ -107,14 +107,13 @@ $("#drag-handle").draggable({
         }
 
 
-        console.log("container top: " + handleToTop);
-        console.log("resValue: " + resValue);
-        console.log("percentValue " + percentValue);
+        // console.log("container top: " + handleToTop);
+        // console.log("resValue: " + resValue);
+        // console.log("percentValue " + percentValue);
 
 
         sliderDiv.slider("value", percentValue);
 
-        //TODO: adjust these numbers to make more sense
         if (percentValue <= 20) {
             result = option1;
         }
@@ -136,46 +135,53 @@ $("#drag-handle").draggable({
 });
 
 //Set slider as droppable
-// sliderDiv.droppable({
-//     //on drop
-//     drop: function (e, ui) {
-//         $("#drag-handle").css('opacity', '1.0');
-//
-//         if ($("#next-text").length){
-//             $("#next-text").fadeIn("800", function(){
-//                 $("#next-text").css('opacity', '1.0');
-//             });
-//         }
-//
-//         var finalMidPosition = $(ui.draggable).position().top;
-//         resValue = Math.round((finalMidPosition - min + halfHandleHeight) / step);
-//         percentValue = linear(resValue, low, high, min, max);
-//
-//         sliderDiv.slider("value", resValue);
-//         console.log(resValue);
-//         console.log(percentValue);
-//
-//         if (percentValue <= 20) {
-//             result = option1;
-//         }
-//         else if (percentValue >= 21 && percentValue <= 50) {
-//             result = option2;
-//         }
-//         else if (percentValue >= 51 && percentValue <= 60) {
-//             result = option3;
-//         }
-//         else if (percentValue >= 61 && percentValue <= 80) {
-//             result = option4;
-//         }
-//         else if (percentValue >= 81 && percentValue <= 100) {
-//             result = option5;
-//         }
-//         //update result on page
-//         console.log(result + ": " + percentValue + "%");
-//
-//         $("#final_result").text(result);
-//     }
-// });
+sliderDiv.droppable({
+    //on drop
+    drop: function (e, ui) {
+        $("#drag-handle").css('opacity', '1.0');
+
+        if ($("#next-text").length){
+            $("#next-text").fadeIn("800", function(){
+                $("#next-text").css('opacity', '1.0');
+            });
+        }
+
+        var finalMidPosition = $(ui.draggable).position().top;
+        resValue = Math.round((finalMidPosition - min + halfHandleHeight));
+        percentValue = linear(resValue, low, high, min, max);
+
+        if (percentValue < 0){
+            percentValue = 0
+        }
+        else if (percentValue > 99){
+            percentValue = 99
+        }
+
+        sliderDiv.slider("value", resValue);
+        // console.log(resValue);
+        // console.log(percentValue);
+
+        if (percentValue <= 20) {
+            result = option1;
+        }
+        else if (percentValue >= 21 && percentValue <= 50) {
+            result = option2;
+        }
+        else if (percentValue >= 51 && percentValue <= 60) {
+            result = option3;
+        }
+        else if (percentValue >= 61 && percentValue <= 80) {
+            result = option4;
+        }
+        else if (percentValue >= 81 && percentValue <= 100) {
+            result = option5;
+        }
+        //update result on page
+        console.log(result + ": " + percentValue + "%");
+
+        $("#final_result").text(result);
+    }
+});
 
 function linear(input, low, high, min, max){
     return Math.ceil(min+(max-min)*(input-low)/(high-low));
@@ -188,7 +194,7 @@ function nextButton(){
         url: 'survey_nextbtn.php',
         data:{
             action:'call_this',
-            value: resValue
+            value: percentValue
         },
         success:function(html) {
             location.reload();
