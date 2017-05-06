@@ -7,10 +7,10 @@ $db = new DB();
 // Get access to button pressed and button order:
 
 if (isset($_POST['buttonPressed'])){
-    //$buttonPressed = $_POST['buttonPressed'];
+    $buttonPressed = $_GET['value'];
 }
 if (isset($_POST['buttonOrder'])) {
-    //$buttonOrder = $_POST['buttonOrder'];
+    $buttonOrder = $_GET['buttonOrder'];
 }
 
 // temps
