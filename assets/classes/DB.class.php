@@ -272,7 +272,9 @@ class DB
                 "button2," .
                 "button3," .
                 "userColor," .
-                "timeStamp" .
+                "timeStamp," .
+				"userName," .
+				"userAge,"
                 " from user WHERE userKey = :userKey");
             $stmt->execute(array(
                 'userKey' => $userKey
@@ -340,7 +342,7 @@ class DB
     }
 
 
-    // Get name of the artpiece for user key
+    // Get active users, returns array of keys
     function getArtPieceName($userKey){
         try {
             $data = array();
@@ -352,24 +354,6 @@ class DB
                 $data[] = $row;
             }
             return $data;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-            die();
-        }
-    }
-
-    // updates name of artpiece
-    function updateArtPieceName($userKey, $name) {
-        try {
-            $stmt = $this->dbh->prepare("UPDATE user SET artpieceName = :name WHERE userKey = :userKey");
-
-            $stmt->execute(array(
-                'userKey' => $userKey,
-                'name' => $name
-            ));
-
-            return $this->dbh->lastInsertId();
-
         } catch (PDOException $e) {
             echo $e->getMessage();
             die();
