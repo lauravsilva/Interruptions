@@ -122,9 +122,8 @@ function init(){
     ctx.drawImage(imageObj, 0,0);
 	ctx.drawImage(imageObj2,705,0);
 	ctx.drawImage(fallBackBG,0,0);
-
-	rightBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj);
-	leftBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj);
+	setTimeout(rightBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj), 10000);
+	setTimeout(	leftBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj), 10000);
 	//try to send canvas data to a server
 	var dataURL = canvas.toDataURL("image/png");
 
@@ -236,7 +235,7 @@ function rightBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj){
 	var yPos = ((hour - 9) * chunk) + ((min/60) * 60) + (200);
 	//hour
 	ctx.save();
-	if(hour >= 12){
+		if(hour >= 12){
 	amPM = "PM";
 	}
 	if(hour > 12){
