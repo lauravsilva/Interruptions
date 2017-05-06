@@ -19,11 +19,11 @@ window.onload = init;
 
 function init(){
 
-var choiceArray = [];
+	var choiceArray = [];
 
-var imageObj = new Image();
-
-var imageObj2 =  new Image();
+	var imageObj = new Image();
+	var imageObj2 =  new Image();
+	var fallBackBG = new Image();
 
 	var numberQuestion = 7;
 	var canvas = document.getElementById("myCanvas");
@@ -96,6 +96,7 @@ var imageObj2 =  new Image();
 	
 	imageObj.src = leftSrc;
 	imageObj2.src = rightSrc;
+	fallBackBG.src = 'assets/initials/fallback.jpg';
 	
 	//timeStamp Parse
 	//var str = "How are you doing today?";
@@ -120,6 +121,8 @@ var imageObj2 =  new Image();
 
     ctx.drawImage(imageObj, 0,0);
 	ctx.drawImage(imageObj2,705,0);
+	ctx.drawImage(fallBackBG,0,0);
+
 	rightBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj);
 	leftBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj);
 	//try to send canvas data to a server
@@ -165,30 +168,40 @@ function rightBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj){
 	for(var i = 0; i < 4;i++){
 		for(var j = 0; j < 4; j++){
 			// Drawing the rects in the center area of the screen 
+
+			ctx.save();
+			ctx.globalCompositeOperation = "screen";
+			ctx.globalAlpha = 0.6;
+			ctx.strokeStyle = "#efefef";
 			ctx.strokeRect(388 + (170 *j),200 + (170 * i),boxSize,boxSize);
+			ctx.restore();
 			
 			//each big square gets a tiny 8x8 square in each of its corners
 			ctx.save();
 			ctx.translate(-4,-4);
+			ctx.strokeStyle = "#efefef";
 			ctx.strokeRect(388 + (170 *j),200 + (170 * i),8,8);
 			ctx.strokeRect(388 + (170 *j),370 + (170 * i),8,8);
 			ctx.strokeRect(558 + (170 *j),200 + (170 * i),8,8);
 			ctx.strokeRect(558 + (170 *j),370 + (170 * i),8,8);
 			ctx.restore();
 			
+			//little itty bitty griddy
 			for(var k = 0; k < 5; k++){
 				for( var l = 0; l < 5; l++){
 				ctx.save();
-				ctx.strokeStyle = "white";
+				ctx.globalAlpha = 0.8;
+				ctx.strokeStyle = "#efefef";
 				ctx.strokeRect(460 + (170 *j) + (k * 6),272 + (170 * i) + (l * 6),3,3);
 				ctx.restore();
 				}
 			}
+			
 			//LilBox only 3 will appear
 
 			if( butIterate == obj['button1'] || butIterate == obj['button2'] || butIterate == obj['button3']){ 
 				ctx.save();
-				ctx.strokeStyle = "white";
+				ctx.strokeStyle = "#fefefe";
 				ctx.strokeRect(388 + (170 *j) + (boxSize/4),200 + (170 * i) + (boxSize/4),lilBoxSize,lilBoxSize);
 				ctx.restore();
 				
@@ -196,19 +209,20 @@ function rightBar(ctx,canvas,answer1,answer2,color1,color2,hour,min,obj){
 				ctx.save();
 				ctx.globalAlpha = .2;
 				ctx.globalCompositeOperation = "screen";
-				ctx.fillStyle = "red";
+				ctx.fillStyle = color2;
 				ctx.fillRect(388 + (170 *j),200 + (170 * i),boxSize,boxSize);
 				ctx.restore();
 				
+				//drawing little circle thing
 				ctx.save();
 				ctx.beginPath();
-				ctx.fillStyle = "white";
+				ctx.fillStyle = "#fefefe";
 				ctx.arc(388 + (170 *j) + (boxSize/4) + lilBoxSize/2,200 + (170 * i) + (boxSize/4)+lilBoxSize,10,0,2*Math.PI);
 				ctx.fill();
-				ctx.stroke();
 				ctx.restore();
 				
 			}
+
 			butIterate++;			
 		}
 	}
@@ -370,17 +384,17 @@ var surveyPos = [
 	  ctx.save();
 	  ctx.globalCompositeOperation = "screen";
 	  ctx.translate(-meatLengthPx/2,-meatGirthPx/2);
-	  ctx.fillStyle = "blue";
+	  ctx.fillStyle = color1;
 	  ctx.fillRect(meatPos,yPos,meatLengthPx,meatGirthPx);
 	  ctx.restore();
 	  
 	  ctx.save();
-	  ctx.translate((-meatLengthPx + 8) /2,(-meatGirthPx + 8 )/2);
-	  ctx.lineWidth =2;
+	  ctx.translate((-meatLengthPx + 6) /2,(-meatGirthPx + 6 )/2);
+	  ctx.lineWidth = 2;
 	  ctx.strokeStyle = "#efefef";
-	  ctx.fillStyle = "blue";
-	  ctx.fillRect(meatPos,yPos,meatLengthPx-8,meatGirthPx-8);
-	  ctx.strokeRect(meatPos,yPos,meatLengthPx-8,meatGirthPx-8);	  
+	  ctx.fillStyle = color1;
+	  ctx.fillRect(meatPos,yPos,meatLengthPx-6,meatGirthPx-6);
+	  ctx.strokeRect(meatPos,yPos,meatLengthPx-6,meatGirthPx-6);	  
 	  ctx.restore();
 	  
 	  
