@@ -147,6 +147,7 @@ sliderDiv.droppable({
         }
 
         var finalMidPosition = $(ui.draggable).position().top;
+
         resValue = Math.round((finalMidPosition - min + halfHandleHeight));
         percentValue = linear(resValue, low, high, min, max);
 

@@ -25,8 +25,7 @@ if (isset($_POST['color'])){
     $color = $_POST['color'];
 }
 else {
-    $_SESSION['errors'] = "color";
-    $formvalidation = 'error';
+    $color = '244f6a';
 }
 
 if (isset($_POST['name'])){

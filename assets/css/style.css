@@ -446,7 +446,7 @@ button {
   width: 100%;
   margin-bottom: 170px; }
 .thankyou .key-box, .begin .key-box {
-  font-family: 'Space Mono', monospace;
+  font-family: 'Inconsolata', monospace;
   width: 18.2%;
   height: 70px;
   border-radius: 2px;

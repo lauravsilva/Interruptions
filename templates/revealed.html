@@ -32,6 +32,44 @@
     <link rel="stylesheet" href="assets/css/normalize.css">
     <link rel="stylesheet" href="assets/css/skeleton.css">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <style>
+        .annotations-wrapper{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            position: absolute;
+            top: 90vh;
+            margin-left:10%;
+            margin-right:10%;
+            margin-bottom:3%;
+        }
+
+        .annotation{
+            margin: 0px 2vw 0px 2vw;
+            width:15vw;
+        }
+
+        .annotation-text-block{
+            background-color:#f7f6f6;
+            padding:20px;
+            width:14vw;
+            margin-top:10px;
+            height:9vw;
+        }
+
+        .annotation-text{
+            color:#1b1437;
+        }
+
+        img.annotation-image{
+            height:10vw;
+        }
+        img#down_arrow{
+            text-align: center;
+            margin: 60px auto;
+        }
+    </style>
     <!-- Favicon
     –––––––––––––––––––––––––––––––––––––––––––––––––– -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
@@ -40,11 +78,47 @@
 <body>
 <div class="reveal revealed">
     <div class="container">
-    <h2>{{ user1 }}</h2>
-    <h2>{{ user2 }}</h2>
 
         <div class="art-piece">
             <img id="my_artpiece" src="{{ artpiecename }}"/>
+        </div>
+
+        <img src="assets/images/look-down.png" alt="down arrow" id="down_arrow">
+
+        <div class="annotations-wrapper">
+            <div class="annotation">
+                <img src="assets/images/timestamp.png" alt="time annotation image" class="annotation-image"/>
+                <div class="annotation-text-block">
+                    <p class="annotation-text" id="timestamp-desktop-size">This is the moment in time you and your stranger met.</p>
+                    <p class="annotation-text" id="timestamp-smaller-size">Timestamp</p>
+                </div>
+            </div>
+
+            <div class="annotation">
+                <img src="assets/images/button.png" alt="time annotation image" class="annotation-image"/>
+                <div class="annotation-text-block">
+                    <p class="annotation-text" id="button-desktop-size">These are the three topics you and your stranger discussed at the button wall.</p>
+                    <p class="annotation-text" id="button-smaller-size">Button Wall Topics</p>
+                </div>
+            </div>
+
+            <div class="annotation">
+                <img src="assets/images/initials.png" alt="time annotation image" class="annotation-image"/>
+                <div class="annotation-text-block">
+                    <p class="annotation-text" id="initials-desktop-size">This is your and your stranger’s first initial.</p>
+                    <p class="annotation-text" id="initials-smaller-size">Name Initials</p>
+                </div>
+            </div>
+
+            <div class="annotation">
+                <img src="assets/images/survey.png" alt="time annotation image" class="annotation-image"/>
+                <div class="annotation-text-block">
+                    <p class="annotation-text" id="survey-desktop-size"> How long the bar is corresponds with  how differently you answered questions in the survey.</p>
+                    <p class="annotation-text" id="survey-smaller-size">Survey Responses</p>
+                </div>
+
+            </div>
+
         </div>
 
     <button id="backrevealBtn" type="submit" name="backrevealBtn" onclick="backToReveal();"><span>Back</span>

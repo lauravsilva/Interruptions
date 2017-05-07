@@ -7,7 +7,7 @@ require_once "assets/classes/util.php";
 session_start();
 
 $db = new DB();
-define("NUMQS", "24");
+define("NUMQS", "12");
 $allQuestionsData = [];
 
 for ($i = 1; $i <= NUMQS; $i++) {
